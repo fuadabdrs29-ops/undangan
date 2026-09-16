@@ -14,14 +14,16 @@
     
     /* Background Tema Mega Mendung Biru & Hitam */
     body { 
-      font-family: 'Poppins', sans-serif; 
-      background: radial-gradient(circle at top, #0d1b2a, #050b14 80%),
-                  url('https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=1200&q=80') center/cover fixed; 
-      color: #f1f5f9; 
-      text-align: center; 
-      line-height: 1.6;
-      padding-bottom: 70px;
-    }
+  font-family: 'Poppins', sans-serif; 
+  /* Overlay radial gradient untuk efek 3D kedalaman & background Mega Mendung milikmu */
+  background: 
+    radial-gradient(circle at center, rgba(13, 27, 42, 0.4) 0%, rgba(5, 11, 20, 0.85) 100%),
+    url('download.png') center/cover fixed no-repeat;
+  color: #f1f5f9; 
+  text-align: center; 
+  line-height: 1.6;
+  padding-bottom: 70px;
+}
 
     /* Container Utama & Glassmorphism Transparan */
     .wrapper { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; }
