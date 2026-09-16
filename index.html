@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; background-color: #f4f4f9; padding: 40px 20px; color: #333; }
+    .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 450px; margin: auto; }
+    h1 { color: #4a5568; margin: 10px 0; }
+    .tamu { font-weight: bold; font-size: 1.2rem; color: #d97706; margin: 15px 0; background: #fffbebfb; padding: 10px; border-radius: 8px; border: 1px dashed #f59e0b; }
+    .btn { display: inline-block; padding: 10px 20px; background: #25d366; color: white; text-decoration: none; border-radius: 5px; margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
 
+  <div class="card">
+    <p style="letter-spacing: 2px; font-size: 0.8rem; color: #718096;">UNDANGAN PERNIKAHAN</p>
+    <h1>Diana &amp; Rizal</h1>
+    
+    <p style="margin-top: 20px;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+    <div class="tamu" id="nama-tamu">Nama Tamu</div>
+    
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+    
+    <p><strong>Akad Nikah &amp; Resepsi</strong></p>
+    <p>Minggu, 13 September 2026</p>
+    <p>Masjid Raya At-Taqwa Kota Cirebon</p>
+
+    <a href="https://maps.app.goo.gl/ck4KRPJNk22QgBRx7" target="_blank" class="btn">Lihat Lokasi Map</a>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaTamu = urlParams.get('to');
+    if (namaTamu) {
+      document.getElementById('nama-tamu').innerText = namaTamu;
+    }
+  </script>
+
+</body>
+</html>
