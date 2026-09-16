@@ -6,228 +6,268 @@
   <title>Undangan Pernikahan - Shofa & Fuad</title>
   
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; background-color: #f9f8f6; color: #4a4a4a; text-align: center; line-height: 1.6; }
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
     
-    /* Cover / Hero / Poin 1 & 2 */
-    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px 20px; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=1000&q=80') center/cover; color: white; }
-    .hero h3 { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; font-weight: 300; }
-    .hero h1 { font-family: 'Great Vibes', cursive; font-size: 3.8rem; margin-bottom: 10px; font-weight: normal; }
-    .hero .date { font-size: 1rem; letter-spacing: 1px; margin-bottom: 30px; }
-    
-    .tamu-box { background: rgba(255, 255, 255, 0.95); padding: 20px 30px; border-radius: 12px; color: #333; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    .tamu-box p { font-size: 0.85rem; color: #666; }
-    .tamu-name { font-weight: 600; font-size: 1.3rem; color: #8c7851; margin-top: 5px; min-height: 30px; }
-    
-    .btn { display: inline-block; padding: 12px 30px; background: #8c7851; color: white; text-decoration: none; border-radius: 30px; font-size: 0.9rem; margin-top: 20px; border: none; cursor: pointer; transition: 0.3s; }
-    .btn:hover { background: #6b5b3e; }
+    /* Background Tema Mega Mendung Mewah */
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.90)), 
+                  url('https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=1200&q=80') center/cover fixed; 
+      color: #f1f5f9; 
+      text-align: center; 
+      line-height: 1.6;
+      padding-bottom: 70px;
+    }
 
-    /* Layout Content */
-    .container { max-width: 480px; margin: 0 auto; background: white; padding: 40px 20px; }
-    .section { margin-bottom: 50px; }
-    .section-title { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #8c7851; margin-bottom: 20px; }
+    /* Container Utama & Glassmorphism (Transparan Mewah) */
+    .wrapper { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; }
     
-    /* Poin 3 & 4: Animasi AI & Mempelai */
-    .img-animasi-ai { width: 100%; max-width: 350px; height: 230px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    .mempelai-img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #8c7851; margin-bottom: 12px; }
-    .nama-mempelai { font-size: 1.25rem; font-weight: 600; color: #333; }
-    .ortu { font-size: 0.85rem; color: #666; margin-top: 4px; }
-    .ayat { font-style: italic; font-size: 0.85rem; color: #666; padding: 0 10px; }
+    .glass-card { 
+      background: rgba(15, 23, 42, 0.65); 
+      backdrop-filter: blur(12px); 
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.3); 
+      border-radius: 20px; 
+      padding: 30px 20px; 
+      margin: 25px 15px; 
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      animation: fadeIn 1s ease-in-out;
+    }
 
-    /* Poin 5: Countdown & Acara */
+    /* Typography Gold / Emas */
+    .gold-text {
+      background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-cursive { font-family: 'Alex Brush', cursive; font-size: 3.8rem; font-weight: normal; line-height: 1.2; }
+    .section-title { font-family: 'Alex Brush', cursive; font-size: 3rem; margin-bottom: 15px; }
+
+    /* Cover / Home */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
+    .tamu-box { background: rgba(255, 255, 255, 0.08); border: 1px dashed rgba(212, 175, 55, 0.5); padding: 15px 25px; border-radius: 12px; margin: 20px 0; width: 85%; }
+
+    /* Tombol */
+    .btn { display: inline-block; padding: 12px 28px; background: linear-gradient(135deg, #b38728, #fbf5b7, #bf953f); color: #0f172a; text-decoration: none; border-radius: 30px; font-size: 0.9rem; font-weight: 600; border: none; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5); }
+
+    /* Foto & Mempelai */
+    .img-ai { width: 100%; height: 220px; object-fit: cover; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.4); margin-bottom: 20px; }
+    .mempelai-img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 2px solid #dfb76c; padding: 4px; background: rgba(255,255,255,0.1); margin-bottom: 10px; }
+
+    /* Countdown */
     .timer { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
-    .timer-box { background: #f9f8f6; padding: 12px; border-radius: 8px; width: 70px; border: 1px solid #eee; }
-    .timer-num { font-size: 1.3rem; font-weight: 600; color: #8c7851; }
-    .timer-unit { font-size: 0.7rem; color: #888; }
-    
-    .card-acara { background: #fdfbf7; padding: 20px; border-radius: 12px; border: 1px solid #f0e6d2; margin-bottom: 20px; }
-    .card-acara h4 { color: #8c7851; font-size: 1.2rem; margin-bottom: 5px; }
+    .timer-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); padding: 10px; border-radius: 10px; width: 70px; }
+    .timer-num { font-size: 1.3rem; font-weight: 700; }
+    .timer-unit { font-size: 0.7rem; color: #cbd5e1; }
 
-    /* Poin 6 & 8: RSVP & Ucapan */
-    input, select, textarea { width: 100%; padding: 11px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; font-size: 0.9rem; }
-    .box-ucapan { background: #f9f8f6; padding: 15px; border-radius: 8px; text-align: left; margin-top: 15px; border-left: 3px solid #8c7851; }
+    /* Form Inputs */
+    input, select, textarea { width: 100%; padding: 12px; margin: 8px 0; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; color: white; font-family: inherit; font-size: 0.9rem; }
+    select option { background: #0f172a; color: white; }
 
-    /* Poin 7: Wedding Gift */
-    .gift-card { background: #fdfbf7; border: 1px dashed #8c7851; padding: 20px; border-radius: 12px; margin-bottom: 15px; }
-    .gift-card img { height: 30px; margin-bottom: 10px; }
-    .norek { font-weight: 600; font-size: 1.1rem; color: #333; letter-spacing: 1px; }
+    /* Bottom Navigation Bar (5 Menu) */
+    .navbar-bottom { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(15px); border-top: 1px solid rgba(212, 175, 55, 0.3); display: flex; justify-content: space-around; padding: 10px 0; z-index: 999; }
+    .nav-item { color: #94a3b8; text-decoration: none; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 3px; transition: 0.3s; }
+    .nav-item i { font-size: 1.2rem; }
+    .nav-item:hover, .nav-item.active { color: #fcf6ba; }
 
-    footer { padding: 30px 20px; background: #f9f8f6; font-size: 0.85rem; color: #777; }
+    /* Keyframe Animation */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
 
-  <!-- POIN 1 & 2: COVER DEPAN -->
-  <div class="hero">
-    <h3>UNDANGAN PERNIKAHAN</h3>
-    <h1>Shofa &amp; Fuad</h1>
-    <div class="date">15 November 2026</div>
+  <div class="wrapper">
 
-    <div style="margin-top: 20px;">
-      <p style="font-size: 0.8rem; letter-spacing: 2px;">THE WEDDING OF</p>
-      <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; margin: 5px 0;">Shofa &amp; Fuad</h2>
-    </div>
+    <!-- MENU 1: HOME (COVER) -->
+    <section class="hero" id="home">
+      <h3 style="letter-spacing: 3px; font-size: 0.8rem;" class="gold-text">UNDANGAN PERNIKAHAN</h3>
+      <h1 class="title-cursive gold-text">Shofa &amp; Fuad</h1>
+      <p style="font-size: 0.9rem; color: #cbd5e1;">Minggu, 15 November 2026</p>
 
-    <div class="tamu-box">
-      <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
-      <!-- Nama kosongkan dulu sesuai permintaan (akan terisi jika ada ?to=Nama) -->
-      <div class="tamu-name" id="nama-tamu"></div>
-    </div>
-
-    <a href="#main-content" class="btn"><i class="fa-solid fa-envelope-open"></i> BUKA UNDANGAN</a>
-  </div>
-
-  <!-- ISI UNDANGAN -->
-  <div class="container" id="main-content">
-
-    <!-- POIN 3: FOTO ANIMASI AI & AYAT QS AR-RUM -->
-    <div class="section">
-      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" class="img-animasi-ai" alt="Animasi AI Prewedding">
-      <p class="ayat">
-        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
-      </p>
-      <p style="font-size: 0.8rem; font-weight: 600; color: #8c7851; margin-top: 8px;">QS. Ar-Rum: 21</p>
-    </div>
-
-    <!-- POIN 4: PENGANTIN PEREMPUAN & LAKI-LAKI -->
-    <div class="section">
-      <p style="font-size: 0.9rem; color: #777; margin-bottom: 25px;">
-        Assalamu'alaikum Warahmatullahi Wabarakatuh<br>
-        Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i pada pernikahan kami:
-      </p>
-
-      <!-- Mempelai Wanita -->
-      <div style="margin-bottom: 30px;">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" class="mempelai-img" alt="Shofa">
-        <div class="nama-mempelai">Shofa Bunyani Marsus</div>
-        <div class="ortu">Putri dari Bapak Asep &amp; Ibu Ai</div>
+      <div style="margin-top: 30px;">
+        <p style="font-size: 0.75rem; letter-spacing: 2px;" class="gold-text">THE WEDDING OF</p>
+        <h2 class="title-cursive gold-text" style="font-size: 2.8rem;">Shofa &amp; Fuad</h2>
       </div>
 
-      <div style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #8c7851; margin: 15px 0;">&amp;</div>
-
-      <!-- Mempelai Pria -->
-      <div>
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="mempelai-img" alt="Fuad">
-        <div class="nama-mempelai">Fuad Abdurrohman Salam</div>
-        <div class="ortu">Putra dari Bapak Badrussalam &amp; Ibu Yayah Kuryiah</div>
+      <div class="tamu-box">
+        <p style="font-size: 0.8rem; color: #cbd5e1;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <div class="gold-text" style="font-weight: 600; font-size: 1.3rem; margin-top: 5px;" id="nama-tamu"></div>
       </div>
-    </div>
 
-    <!-- POIN 5: SAVE THE DATE & DETAIL ACARA -->
-    <div class="section">
-      <h2 class="section-title">Save The Date</h2>
-      <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Counting down to the day</p>
+      <a href="#mempelai" class="btn"><i class="fa-solid fa-envelope-open"></i> BUKA UNDANGAN</a>
+    </section>
+
+    <!-- MENU 2: MEMPELAI -->
+    <section id="mempelai" style="padding-top: 20px;">
       
-      <!-- Countdown -->
-      <div class="timer">
-        <div class="timer-box"><span class="timer-num" id="days">0</span><span class="timer-unit">Hari</span></div>
-        <div class="timer-box"><span class="timer-num" id="hours">0</span><span class="timer-unit">Jam</span></div>
-        <div class="timer-box"><span class="timer-num" id="minutes">0</span><span class="timer-unit">Menit</span></div>
-        <div class="timer-box"><span class="timer-num" id="seconds">0</span><span class="timer-unit">Detik</span></div>
+      <!-- Photo & QS. Ar-Rum -->
+      <div class="glass-card">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" class="img-ai" alt="Mega Mendung AI">
+        <p style="font-style: italic; font-size: 0.85rem; color: #cbd5e1;">
+          "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+        </p>
+        <p class="gold-text" style="font-size: 0.8rem; font-weight: 600; margin-top: 10px;">QS. Ar-Rum: 21</p>
+      </div>
+
+      <!-- Mempelai Info -->
+      <div class="glass-card">
+        <h2 class="section-title gold-text">Kedua Mempelai</h2>
+        <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 25px;">
+          Assalamu'alaikum Warahmatullahi Wabarakatuh<br>Dengan memohon Rahmat dan Ridho Allah SWT, kami bermaksud mengundang Anda dalam pernikahan kami:
+        </p>
+
+        <!-- Shofa -->
+        <div style="margin-bottom: 25px;">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" class="mempelai-img" alt="Shofa">
+          <h3 class="gold-text" style="font-size: 1.3rem;">Shofa Bunyani Marsus</h3>
+          <p style="font-size: 0.8rem; color: #cbd5e1;">Putri dari Bapak Asep &amp; Ibu Ai</p>
+        </div>
+
+        <div class="title-cursive gold-text" style="font-size: 2.5rem;">&amp;</div>
+
+        <!-- Fuad -->
+        <div style="margin-top: 15px;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="mempelai-img" alt="Fuad">
+          <h3 class="gold-text" style="font-size: 1.3rem;">Fuad Abdurrohman Salam</h3>
+          <p style="font-size: 0.8rem; color: #cbd5e1;">Putra dari Bapak Badrussalam &amp; Ibu Yayah Kuryiah</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- MENU 3: ACARA & COUNTDOWN -->
+    <section id="acara" style="padding-top: 20px;">
+      
+      <div class="glass-card">
+        <h2 class="section-title gold-text">Save The Date</h2>
+        <p style="font-size: 0.8rem; color: #cbd5e1;">Counting down to the day</p>
+        
+        <!-- Timer -->
+        <div class="timer">
+          <div class="timer-box"><span class="timer-num gold-text" id="days">0</span><span class="timer-unit">Hari</span></div>
+          <div class="timer-box"><span class="timer-num gold-text" id="hours">0</span><span class="timer-unit">Jam</span></div>
+          <div class="timer-box"><span class="timer-num gold-text" id="minutes">0</span><span class="timer-unit">Menit</span></div>
+          <div class="timer-box"><span class="timer-num gold-text" id="seconds">0</span><span class="timer-unit">Detik</span></div>
+        </div>
       </div>
 
       <!-- Detail Akad & Resepsi -->
-      <div style="margin-top: 35px;">
+      <div class="glass-card">
+        <h3 class="gold-text" style="font-size: 1.4rem;">Akad Nikah</h3>
+        <p style="font-weight: 500; font-size: 0.9rem; margin-top: 5px;">Minggu, 15 November 2026</p>
+        <p style="font-size: 0.85rem; color: #cbd5e1;">07.30 - 09.30 WIB</p>
+        <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px;">Kediaman Pengantin Perempuan<br>Ranji Kulon, Cigayam</p>
+        <button class="btn" style="padding: 6px 16px; font-size: 0.75rem; margin-top: 10px;">Lihat Lokasi (Segera)</button>
         
-        <div class="card-acara">
-          <h4>Akad Nikah</h4>
-          <p style="font-weight: 500; font-size: 0.9rem;">Minggu, 15 November 2026</p>
-          <p style="font-size: 0.85rem; color: #555;">07.30 - 09.30 WIB</p>
-          <p style="font-size: 0.85rem; color: #666; margin-top: 5px;">Kediaman Pengantin Perempuan<br>Ranji Kulon, Cigayam</p>
-          <button class="btn" style="padding: 8px 18px; font-size: 0.8rem; margin-top: 10px;">Lihat Lokasi (Segera)</button>
-        </div>
+        <hr style="border: 0; border-top: 1px dashed rgba(212, 175, 55, 0.3); margin: 25px 0;">
 
-        <div class="card-acara">
-          <h4>Resepsi</h4>
-          <p style="font-weight: 500; font-size: 0.9rem;">Minggu, 15 November 2026</p>
-          <p style="font-size: 0.85rem; color: #555;">10.00 WIB - Selesai</p>
-          <p style="font-size: 0.85rem; color: #666; margin-top: 5px;">Kediaman Pengantin Perempuan<br>Ranji Kulon, Cigayam</p>
-          <button class="btn" style="padding: 8px 18px; font-size: 0.8rem; margin-top: 10px;">Lihat Lokasi (Segera)</button>
-        </div>
-
+        <h3 class="gold-text" style="font-size: 1.4rem;">Resepsi</h3>
+        <p style="font-weight: 500; font-size: 0.9rem; margin-top: 5px;">Minggu, 15 November 2026</p>
+        <p style="font-size: 0.85rem; color: #cbd5e1;">10.00 WIB - Selesai</p>
+        <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 5px;">Kediaman Pengantin Perempuan<br>Ranji Kulon, Cigayam</p>
+        <button class="btn" style="padding: 6px 16px; font-size: 0.75rem; margin-top: 10px;">Lihat Lokasi (Segera)</button>
       </div>
-    </div>
 
-    <!-- POIN 6: RSVP -->
-    <div class="section" style="text-align: left; background: #fdfbf7; padding: 25px; border-radius: 12px; border: 1px solid #f0e6d2;">
-      <h2 class="section-title" style="text-align: center;">RSVP</h2>
-      <p style="font-size: 0.85rem; color: #666; text-align: center; margin-bottom: 20px;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+    </section>
+
+    <!-- MENU 4: RSVP & WEDDING GIFT -->
+    <section id="rsvp" style="padding-top: 20px;">
       
-      <form id="rsvpForm">
-        <label style="font-size: 0.8rem; font-weight: 500;">Nama Tamu</label>
-        <input type="text" id="rsvpNama" placeholder="Masukkan nama Anda..." required>
-        
-        <label style="font-size: 0.8rem; font-weight: 500;">Jumlah Tamu</label>
-        <select id="rsvpJumlah">
-          <option value="1 Orang">1 Orang</option>
-          <option value="2 Orang">2 Orang</option>
-          <option value="Rombongan">Rombongan</option>
-        </select>
+      <!-- Form RSVP -->
+      <div class="glass-card" style="text-align: left;">
+        <h2 class="section-title gold-text" style="text-align: center;">RSVP</h2>
+        <p style="font-size: 0.8rem; color: #cbd5e1; text-align: center; margin-bottom: 15px;">Merupakan suatu kehormatan apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
 
-        <label style="font-size: 0.8rem; font-weight: 500;">Konfirmasi Kehadiran</label>
-        <select id="rsvpStatus">
-          <option value="Hadir">Hadir</option>
-          <option value="Tidak Hadir">Tidak Hadir</option>
-        </select>
+        <form id="rsvpForm">
+          <label style="font-size: 0.8rem;" class="gold-text">Nama Tamu</label>
+          <input type="text" id="rsvpNama" placeholder="Nama Anda..." required>
+          
+          <label style="font-size: 0.8rem;" class="gold-text">Jumlah Tamu</label>
+          <select id="rsvpJumlah">
+            <option value="1 Orang">1 Orang</option>
+            <option value="2 Orang">2 Orang</option>
+            <option value="Rombongan">Rombongan</option>
+          </select>
 
-        <button type="submit" class="btn" style="width: 100%; font-weight: 600; margin-top: 15px;">SUBMIT</button>
-      </form>
-    </div>
+          <label style="font-size: 0.8rem;" class="gold-text">Konfirmasi Kehadiran</label>
+          <select id="rsvpStatus">
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+          </select>
 
-    <!-- POIN 7: WEDDING GIFT (DANA & BSI) -->
-    <div class="section">
-      <h2 class="section-title">Wedding Gift</h2>
-      <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Doa restu Anda merupakan karunia yang sangat berharga bagi kami. Namun jika ingin memberikan hadiah, Anda dapat mengirimkannya melalui:</p>
-
-      <!-- DANA -->
-      <div class="gift-card">
-        <p style="font-weight: 600; color: #108ee9; font-size: 1.2rem;">DANA</p>
-        <div class="norek">083172367187</div>
-        <p style="font-size: 0.85rem; color: #555;">a.n. Shofa Bunyani Marsus</p>
+          <button type="submit" class="btn" style="width: 100%; margin-top: 15px;">SUBMIT</button>
+        </form>
       </div>
 
-      <!-- BSI -->
-      <div class="gift-card">
-        <p style="font-weight: 600; color: #00a39e; font-size: 1.2rem;">BANK BSI</p>
-        <div class="norek">7309950059</div>
-        <p style="font-size: 0.85rem; color: #555;">a.n. Fuad Abdurrohman Salam</p>
-      </div>
-    </div>
+      <!-- Wedding Gift -->
+      <div class="glass-card">
+        <h2 class="section-title gold-text">Wedding Gift</h2>
+        <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 20px;">Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih dapat melalui:</p>
 
-    <!-- POIN 8: UCAPAN & DOA -->
-    <div class="section">
-      <h2 class="section-title">Ucapan &amp; Doa</h2>
-      <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Berikan ucapan manis &amp; doa restu untuk kedua mempelai</p>
-      
-      <form id="ucapanForm">
-        <input type="text" id="ucapanNama" placeholder="Nama Anda" required>
-        <textarea id="ucapanTeks" rows="3" placeholder="Tuliskan ucapan & doa..." required></textarea>
-        <button type="submit" class="btn" style="width: 100%;"><i class="fa-solid fa-paper-plane"></i> Kirim Ucapan</button>
-      </form>
+        <!-- DANA -->
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.3); margin-bottom: 15px;">
+          <p class="gold-text" style="font-weight: 700;">DANA</p>
+          <p style="font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; margin: 5px 0;">083172367187</p>
+          <p style="font-size: 0.8rem; color: #cbd5e1;">a.n. Shofa Bunyani Marsus</p>
+        </div>
 
-      <!-- Tempat pesan ucapan akan tampil -->
-      <div id="daftarUcapan">
-        <div class="box-ucapan">
-          <strong>Mas Irfan</strong>
-          <p style="font-size: 0.85rem; color: #444; margin-top: 3px;">Selamat untuk Shofa & Fuad! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Amin!</p>
+        <!-- BSI -->
+        <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.3);">
+          <p class="gold-text" style="font-weight: 700;">BANK BSI</p>
+          <p style="font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; margin: 5px 0;">7309950059</p>
+          <p style="font-size: 0.8rem; color: #cbd5e1;">a.n. Fuad Abdurrohman Salam</p>
         </div>
       </div>
-    </div>
+
+    </section>
+
+    <!-- MENU 5: UCAPAN & DOA -->
+    <section id="ucapan" style="padding-top: 20px;">
+      <div class="glass-card">
+        <h2 class="section-title gold-text">Ucapan &amp; Doa</h2>
+        <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 15px;">Tuliskan ucapan manis untuk kedua mempelai</p>
+
+        <form id="ucapanForm">
+          <input type="text" id="ucapanNama" placeholder="Nama Anda" required>
+          <textarea id="ucapanTeks" rows="3" placeholder="Tulis ucapan & doa..." required></textarea>
+          <button type="submit" class="btn" style="width: 100%;"><i class="fa-solid fa-paper-plane"></i> Kirim Ucapan</button>
+        </form>
+
+        <div id="daftarUcapan" style="margin-top: 20px; text-align: left;">
+          <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border-left: 3px solid #dfb76c; margin-top: 10px;">
+            <strong class="gold-text">Mas Irfan</strong>
+            <p style="font-size: 0.8rem; color: #cbd5e1; margin-top: 3px;">Selamat untuk Shofa & Fuad! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Amin!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: 20px; font-size: 0.8rem; color: #94a3b8;">
+      <p>Terima Kasih Atas Doa &amp; Restunya</p>
+      <p class="title-cursive gold-text" style="font-size: 2rem; margin-top: 5px;">Shofa &amp; Fuad</p>
+    </footer>
+
+    <!-- NAVBAR MELAYANG (5 MENU) -->
+    <nav class="navbar-bottom">
+      <a href="#home" class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="#mempelai" class="nav-item"><i class="fa-solid fa-heart"></i><span>Mempelai</span></a>
+      <a href="#acara" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span>Acara</span></a>
+      <a href="#rsvp" class="nav-item"><i class="fa-solid fa-clipboard-check"></i><span>RSVP</span></a>
+      <a href="#ucapan" class="nav-item"><i class="fa-solid fa-comments"></i><span>Ucapan</span></a>
+    </nav>
 
   </div>
 
-  <footer>
-    <p>Terima Kasih Atas Doa &amp; Restunya</p>
-    <p style="font-weight: 600; margin-top: 5px; color: #4a4a4a;">Shofa &amp; Fuad</p>
-  </footer>
-
-  <!-- SCRIPT INTEGRASI -->
+  <!-- SCRIPT -->
   <script>
-    // 1. Tangkap Nama Tamu dari URL (?to=Nama)
+    // 1. Parameter Nama Tamu dari URL (?to=Nama)
     const urlParams = new URLSearchParams(window.location.search);
     const namaTamu = urlParams.get('to');
     if (namaTamu) {
@@ -235,12 +275,11 @@
       document.getElementById('rsvpNama').value = namaTamu;
     }
 
-    // 2. Countdown ke 15 November 2026
+    // 2. Countdown Timer ke 15 November 2026
     const targetDate = new Date("Nov 15, 2026 07:30:00").getTime();
     setInterval(function() {
       const now = new Date().getTime();
       const distance = targetDate - now;
-      
       if (distance > 0) {
         document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
         document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -255,19 +294,17 @@
       alert('Terima kasih! Konfirmasi RSVP Anda telah tersimpan.');
     });
 
-    // 4. Form Ucapan & Doa
+    // 4. Form Ucapan
     document.getElementById('ucapanForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const nama = document.getElementById('ucapanNama').value;
       const teks = document.getElementById('ucapanTeks').value;
-
       const htmlBaru = `
-        <div class="box-ucapan">
-          <strong>${nama}</strong>
-          <p style="font-size: 0.85rem; color: #444; margin-top: 3px;">${teks}</p>
+        <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border-left: 3px solid #dfb76c; margin-top: 10px;">
+          <strong class="gold-text">${nama}</strong>
+          <p style="font-size: 0.8rem; color: #cbd5e1; margin-top: 3px;">${teks}</p>
         </div>
       `;
-      
       document.getElementById('daftarUcapan').insertAdjacentHTML('afterbegin', htmlBaru);
       document.getElementById('ucapanTeks').value = '';
     });
