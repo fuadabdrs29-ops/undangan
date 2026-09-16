@@ -3,39 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undangan Pernikahan</title>
+  <title>Undangan Pernikahan - Diana & Rizal</title>
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
-    body { font-family: sans-serif; text-align: center; background-color: #f4f4f9; padding: 40px 20px; color: #333; }
-    .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 450px; margin: auto; }
-    h1 { color: #4a5568; margin: 10px 0; }
-    .tamu { font-weight: bold; font-size: 1.2rem; color: #d97706; margin: 15px 0; background: #fffbebfb; padding: 10px; border-radius: 8px; border: 1px dashed #f59e0b; }
-    .btn { display: inline-block; padding: 10px 20px; background: #25d366; color: white; text-decoration: none; border-radius: 5px; margin-top: 15px; font-weight: bold; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background-color: #f8f6f0; color: #4a4a4a; text-align: center; }
+    
+    /* Cover Section */
+    .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80') center/cover; }
+    .cover h3 { font-size: 0.9rem; letter-spacing: 3px; color: #8c7851; text-transform: uppercase; margin-bottom: 10px; }
+    .cover h1 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: #6b5b3e; margin-bottom: 20px; }
+    .tamu-box { background: rgba(255, 255, 255, 0.9); padding: 15px 25px; border-radius: 10px; border: 1px solid #e0d8c3; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .tamu-name { font-weight: 600; font-size: 1.2rem; color: #8c7851; margin-top: 5px; }
+    
+    .btn { display: inline-block; padding: 12px 28px; background: #8c7851; color: white; text-decoration: none; border-radius: 30px; font-weight: 500; margin-top: 15px; border: none; cursor: pointer; transition: 0.3s; }
+    .btn:hover { background: #6b5b3e; }
+
+    /* Content Card */
+    .container { max-width: 500px; margin: 0 auto; padding: 30px 20px; background: white; }
+    .section { margin-bottom: 40px; }
+    .section-title { font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #8c7851; margin-bottom: 15px; }
+    .ayat { font-style: italic; font-size: 0.85rem; color: #777; line-height: 1.6; padding: 0 10px; }
+
+    /* Mempelai */
+    .mempelai-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #8c7851; margin-bottom: 10px; }
+    .nama-mempelai { font-size: 1.3rem; font-weight: 600; color: #4a4a4a; }
+    .ortu { font-size: 0.8rem; color: #777; margin-bottom: 10px; }
+
+    /* Countdown */
+    .timer { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+    .timer-box { background: #f8f6f0; padding: 10px; border-radius: 8px; width: 70px; }
+    .timer-box span { display: block; }
+    .timer-num { font-size: 1.2rem; font-weight: 600; color: #8c7851; }
+    .timer-unit { font-size: 0.7rem; color: #777; }
+
+    /* Form RSVP */
+    input, select, textarea { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; }
+    
+    footer { padding: 20px; font-size: 0.8rem; color: #999; background: #f8f6f0; }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <p style="letter-spacing: 2px; font-size: 0.8rem; color: #718096;">UNDANGAN PERNIKAHAN</p>
+  <!-- COVER / HEADER -->
+  <div class="cover">
+    <h3>Undangan Pernikahan</h3>
     <h1>Diana &amp; Rizal</h1>
+    <p style="font-size: 0.9rem;">Minggu, 13 September 2026</p>
     
-    <p style="margin-top: 20px;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-    <div class="tamu" id="nama-tamu">Nama Tamu</div>
+    <div class="tamu-box">
+      <p style="font-size: 0.85rem; color: #666;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+      <div class="tamu-name" id="nama-tamu">Nama Tamu</div>
+    </div>
     
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-    
-    <p><strong>Akad Nikah &amp; Resepsi</strong></p>
-    <p>Minggu, 13 September 2026</p>
-    <p>Masjid Raya At-Taqwa Kota Cirebon</p>
-
-    <a href="https://maps.app.goo.gl/ck4KRPJNk22QgBRx7" target="_blank" class="btn">Lihat Lokasi Map</a>
+    <a href="#isi" class="btn"><i class="fa-solid fa-envelope-open"></i> Buka Undangan</a>
   </div>
 
+  <!-- ISI UNDANGAN -->
+  <div class="container" id="isi">
+    
+    <!-- Ayat -->
+    <div class="section">
+      <p class="ayat">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."<br><strong>(QS. Ar-Rum: 21)</strong></p>
+    </div>
+
+    <!-- Mempelai -->
+    <div class="section">
+      <h2 class="section-title">Mempelai</h2>
+      
+      <div style="margin-bottom: 25px;">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" class="mempelai-img" alt="Diana">
+        <div class="nama-mempelai">Diana Kusuma Dewi</div>
+        <div class="ortu">Putri dari Bpk. Abdul Latif (Alm) &amp; Ibu Nova</div>
+      </div>
+
+      <div style="font-size: 1.5rem; color: #8c7851; margin: 10px 0;">&amp;</div>
+
+      <div>
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" class="mempelai-img" alt="Rizal">
+        <div class="nama-mempelai">Muhammad Rizal</div>
+        <div class="ortu">Putra dari Bpk. H. Agus Mansur &amp; Ibu Yanti</div>
+      </div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="section" style="background: #faf8f5; padding: 20px; border-radius: 10px;">
+      <h3 style="font-size: 1rem; color: #8c7851;">Menghitung Hari</h3>
+      <div class="timer">
+        <div class="timer-box"><span class="timer-num" id="days">0</span><span class="timer-unit">Hari</span></div>
+        <div class="timer-box"><span class="timer-num" id="hours">0</span><span class="timer-unit">Jam</span></div>
+        <div class="timer-box"><span class="timer-num" id="minutes">0</span><span class="timer-unit">Menit</span></div>
+        <div class="timer-box"><span class="timer-num" id="seconds">0</span><span class="timer-unit">Detik</span></div>
+      </div>
+    </div>
+
+    <!-- Detail Acara -->
+    <div class="section">
+      <h2 class="section-title">Acara Pernikahan</h2>
+      
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #8c7851;">Akad Nikah</h4>
+        <p style="font-size: 0.9rem;">07.30 - 09.30 WIB</p>
+        <p style="font-size: 0.85rem; color: #666;">Masjid Raya At-Taqwa Kota Cirebon</p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h4 style="color: #8c7851;">Resepsi</h4>
+        <p style="font-size: 0.9rem;">11.00 - 14.00 WIB</p>
+        <p style="font-size: 0.85rem; color: #666;">Gedung Islamic Centre At-Taqwa Kota Cirebon</p>
+      </div>
+
+      <a href="https://maps.app.goo.gl/ck4KRPJNk22QgBRx7" target="_blank" class="btn" style="font-size: 0.85rem;"><i class="fa-solid fa-location-dot"></i> Lihat Petunjuk Lokasi</a>
+    </div>
+
+    <!-- Form RSVP ke WhatsApp -->
+    <div class="section" style="text-align: left; background: #fdfbf7; padding: 20px; border-radius: 10px;">
+      <h2 class="section-title" style="text-align: center;">Konfirmasi Kehadiran</h2>
+      <form id="rsvpForm">
+        <label style="font-size: 0.8rem;">Nama Anda:</label>
+        <input type="text" id="rsvpNama" placeholder="Masukkan nama..." required>
+        
+        <label style="font-size: 0.8rem;">Konfirmasi Kehadiran:</label>
+        <select id="rsvpStatus">
+          <option value="Hadir">Ya, Saya akan Hadir</option>
+          <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
+        </select>
+
+        <label style="font-size: 0.8rem;">Ucapan / Doa:</label>
+        <textarea id="rsvpPesan" rows="3" placeholder="Tulis ucapan selamat..."></textarea>
+
+        <button type="submit" class="btn" style="width: 100%;"><i class="fa-brands fa-whatsapp"></i> Kirim via WhatsApp</button>
+      </form>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Terima Kasih Atas Doa &amp; Restunya</p>
+    <p style="margin-top: 5px;"><strong>Diana &amp; Rizal</strong></p>
+  </footer>
+
+  <!-- SCRIPT -->
   <script>
+    // 1. Ambil Nama Tamu dari URL (?to=Nama)
     const urlParams = new URLSearchParams(window.location.search);
     const namaTamu = urlParams.get('to');
     if (namaTamu) {
       document.getElementById('nama-tamu').innerText = namaTamu;
+      document.getElementById('rsvpNama').value = namaTamu;
     }
+
+    // 2. Hitung Mundur (Countdown)
+    const targetDate = new Date("Sep 13, 2026 08:00:00").getTime();
+    setInterval(function() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      
+      document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+    }, 1000);
+
+    // 3. Form RSVP Kirim ke WhatsApp
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nama = document.getElementById('rsvpNama').value;
+      const status = document.getElementById('rsvpStatus').value;
+      const pesan = document.getElementById('rsvpPesan').value;
+      
+      // GANTI NOMOR WHATSAPP DI BAWAH INI (Awali dengan 62)
+      const nomorWA = "6281234567890"; 
+      
+      const teks = `Halo, saya *${nama}*.%0AKehadiran: *${status}*%0AUcapan: _"${pesan}"_`;
+      window.open(`https://wa.me/${nomorWA}?text=${teks}`, '_blank');
+    });
   </script>
 
 </body>
