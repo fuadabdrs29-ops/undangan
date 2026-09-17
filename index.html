@@ -13,58 +13,99 @@
 
     <style>
         :root {
-            --bg-color: #0b1d3a;          /* Biru gelap (Navy) menyesuaikan background */
-            --card-bg: rgba(15, 30, 58, 0.85); /* Kartu semi-transparan biru gelap */
-            --text-dark: #f0f4f8;         /* Teks utama berwarna putih agak krem agar tidak silau */
-            --text-gold: #e5c158;         /* Warna emas elegan menyesuaikan ornamen awan */
+            --bg-color: #0b1d3a;          /* Biru gelap (Navy) */
+            --card-bg: rgba(15, 30, 58, 0.85); /* Kartu semi-transparan */
+            --text-dark: #f0f4f8;         /* Teks utama */
+            --text-gold: #e5c158;         /* Warna emas elegan */
             --font-serif: 'Playfair Display', serif;
             --font-title: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: var(--font-sans); background-color: #111; color: var(--text-dark); text-align: center; line-height: 1.6; }
+        body { font-family: var(--font-sans); background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
 
-        .main-container {
-            max-width: 480px;
-            margin: 0 auto;
-            background: var(--bg-color);
+        /* ==========================================
+           SPLIT SCREEN LAYOUT MANAGER (LAPTOP vs HP)
+           ========================================== */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
             min-height: 100vh;
-            position: relative;
-            box-shadow: 0 0 25px rgba(0,0,0,0.4);
-            padding-bottom: 90px;
         }
 
-        /* DUKUNGAN BACKGROUND SETIAP SLIDE */
-        section {
-            padding: 50px 20px;
-            border-bottom: 1px solid #eaeaea;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-        }
-
-        h1, h2, h3, h4 { font-family: var(--font-title); color: var(--text-gold); font-weight: 600; }
-        p { font-size: 0.9rem; color: #555; }
-
-        /* SLIDE 1: COVER */
-        #cover {
-            min-height: 100vh;
+        /* KOLOM KIRI: COVER (STICKY/DIEM DI LAPTOP) */
+        .left-cover {
+            width: 100%;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 30px 20px;
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
         }
 
         .guest-card {
             margin-top: 25px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(15, 30, 58, 0.9);
             border-radius: 12px;
             border: 1px solid var(--text-gold);
             width: 100%;
+            max-width: 380px;
+            backdrop-filter: blur(5px);
         }
+
+        /* KOLOM KANAN: ISI UNDANGAN (SCROLLABLE) */
+        .right-content {
+            width: 100%;
+            background-color: var(--bg-color);
+            position: relative;
+            padding-bottom: 90px;
+        }
+
+        /* MEDIA QUERY: TAMPILAN KHUSUS LAPTOP/PC (>992px) */
+        @media (min-width: 992px) {
+            .wrapper {
+                flex-direction: row;
+            }
+
+            .left-cover {
+                width: 50%;
+                height: 100vh;
+                position: sticky;
+                top: 0;
+            }
+
+            .right-content {
+                width: 50%;
+                min-height: 100vh;
+            }
+
+            .navbar-bottom {
+                max-width: 50% !important;
+                left: 75% !important;
+            }
+        }
+
+        /* STYLING SECTION & SEKSI UNDANGAN */
+        section {
+            padding: 50px 20px;
+            border-bottom: 1px solid rgba(229, 193, 88, 0.2);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            text-align: center;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-title); color: var(--text-gold); font-weight: 600; }
+        p { font-size: 0.9rem; color: var(--text-dark); }
 
         .btn-main {
             display: inline-flex;
@@ -73,34 +114,24 @@
             margin-top: 15px;
             padding: 10px 24px;
             background-color: var(--text-gold);
-            color: white;
+            color: #0b1d3a;
             text-decoration: none;
             border-radius: 25px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             border: none;
             cursor: pointer;
         }
 
-        /* SLIDE 2: AYAT & QUOTE */
-        .quran-box {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 0.92rem;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(4px);
+        /* SLIDE CARDS */
+        .quran-box, .profile-card, .rsvp-container, .gift-wrapper, .event-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(6px);
             padding: 25px 20px;
             border-radius: 12px;
             border: 1px solid var(--text-gold);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        /* SLIDE 3: PROFIL MEMPELAI */
-        .profile-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px 15px;
-            border-radius: 12px;
-            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
         }
 
         .profile-img {
@@ -112,61 +143,37 @@
             border: 3px solid var(--text-gold);
         }
 
-        /* SLIDE 4: TIMER COUNTDOWN */
+        /* COUNTDOWN */
         .timer-grid { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .timer-box { background: var(--text-gold); color: white; padding: 10px; border-radius: 8px; min-width: 65px; }
+        .timer-box { background: var(--text-gold); color: #0b1d3a; padding: 10px; border-radius: 8px; min-width: 65px; }
         .timer-num { font-size: 1.3rem; font-weight: bold; }
-        .timer-label { font-size: 0.7rem; text-transform: uppercase; }
+        .timer-label { font-size: 0.7rem; text-transform: uppercase; font-weight: 700; }
 
-        /* SLIDE 5: ACARA CARD */
-        .event-card {
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid #e8e8e8;
-            border-radius: 12px;
-            padding: 25px 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-        }
-
-        /* SLIDE 6: GALERI FOTO GRID */
+        /* GALERI */
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
         .gallery-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
 
-        /* SLIDE 7: FORM RSVP & GUESTBOOK */
-        .rsvp-container {
-            background: rgba(255, 255, 255, 0.92);
-            padding: 20px;
-            border-radius: 12px;
-        }
-
+        /* FORM STYLING */
         .form-group { text-align: left; margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
-        .form-control { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; color: var(--text-gold); }
+        .form-control { width: 100%; padding: 10px; border: 1px solid var(--text-gold); background: rgba(255,255,255,0.1); color: #fff; border-radius: 6px; }
         .guestbook-list { margin-top: 20px; text-align: left; max-height: 220px; overflow-y: auto; }
-        .guestbook-item { background: #f8f9fa; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid var(--text-gold); }
+        .guestbook-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid var(--text-gold); }
 
-        /* SLIDE 8: REKENING CARD & COLLAPSE EFFECT */
-        .gift-wrapper {
-            background: rgba(255, 255, 255, 0.92);
-            padding: 20px;
-            border-radius: 12px;
-        }
-
+        /* AMPLOP DIGITAL */
         .gift-container {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-in-out, opacity 0.4s ease;
             opacity: 0;
         }
-
         .gift-container.active {
             max-height: 1000px;
             opacity: 1;
             margin-top: 15px;
         }
-
         .gift-card {
-            background: #fdfbf7;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px dashed var(--text-gold);
             border-radius: 10px;
             padding: 20px;
@@ -181,23 +188,24 @@
             transform: translateX(-50%);
             width: 100%;
             max-width: 480px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(11, 29, 58, 0.95);
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
             z-index: 999;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--text-gold);
         }
-        .nav-item { color: #777; text-decoration: none; font-size: 0.7rem; display: flex; flex-direction: column; align-items: center; }
+        .nav-item { color: #8a9bb5; text-decoration: none; font-size: 0.7rem; display: flex; flex-direction: column; align-items: center; }
         .nav-item i { font-size: 1.1rem; }
         .nav-item:hover { color: var(--text-gold); }
 
-        /* MUSIC BUTTON */
+        /* MUSIC BUTTON FLOATING */
         .music-btn {
             position: fixed; bottom: 75px; right: 15px; width: 40px; height: 40px;
-            background: var(--text-gold); color: white; border-radius: 50%;
+            background: var(--text-gold); color: #0b1d3a; border-radius: 50%;
             display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         .rotate { animation: spin 4s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -205,174 +213,175 @@
 </head>
 <body>
 
-    <div class="main-container">
+    <!-- PEMUTAR MUSIK LATAR -->
+    <div class="music-btn" onclick="toggleMusic()" id="music-btn"><i class="fas fa-music"></i></div>
+    <audio id="bg-music" loop></audio>
 
-        <!-- TOMBOL MUSIK -->
-        <div class="music-btn" onclick="toggleMusic()" id="music-btn"><i class="fas fa-music"></i></div>
-        <audio id="bg-music" loop></audio>
+    <div class="wrapper">
 
-        <!-- SLIDE 1: COVER -->
-        <section id="cover">
-            <p style="font-size: 0.85rem; letter-spacing: 3px;">UNDANGAN PERNIKAHAN</p>
+        <!-- ==========================================
+             KOLOM KIRI: COVER (DIEM / FIXED DI LAPTOP)
+             ========================================== -->
+        <div class="left-cover" id="cover">
+            <p style="font-size: 0.85rem; letter-spacing: 3px; color: var(--text-gold);">UNDANGAN PERNIKAHAN</p>
             <h1 id="view-nama-pasangan" style="font-size: 2.3rem; margin: 15px 0;"></h1>
             <p id="view-tgl-singkat" style="font-weight: 600;"></p>
 
             <div class="guest-card">
-                <p style="font-size: 0.8rem; color: #777;">Kepada Yth. <br>Bapak/Ibu/Saudara/i</p>
+                <p style="font-size: 0.8rem; color: var(--text-dark);">Kepada Yth. <br>Bapak/Ibu/Saudara/i</p>
                 <h3 id="guest-name" style="margin: 8px 0;">Nama Tamu</h3>
                 <a href="#quote" class="btn-main" onclick="playMusic()"><i class="fas fa-envelope-open"></i> BUKA UNDANGAN</a>
             </div>
-        </section>
-
-        <!-- SLIDE 2: AYAT -->
-        <section id="quote">
-            <div class="quran-box">
-                <p id="view-ayat-teks"></p>
-                <h4 id="view-ayat-sumber" style="margin-top: 15px; font-size: 0.85rem;"></h4>
-            </div>
-        </section>
-
-        <!-- SLIDE 3: MEMPELAI -->
-        <section id="profile">
-            <div class="profile-card">
-                <p style="font-size: 0.85rem; letter-spacing: 2px;">Assalamu'alaikum Wr. Wb.</p>
-                <p style="margin-top: 8px;">Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Anda pada pernikahan kami:</p>
-
-                <!-- MEMPELAI WANITA -->
-                <div style="margin-top: 25px;">
-                    <img id="view-foto-wanita" class="profile-img">
-                    <h3 id="view-nama-wanita"></h3>
-                    <p id="view-ortu-wanita" style="font-size: 0.8rem; margin-top: 5px;"></p>
-                    <a id="view-ig-wanita" target="_blank" class="btn-main" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;"><i class="fab fa-instagram"></i> Instagram</a>
-                </div>
-
-                <h2 style="margin: 20px 0;">&</h2>
-
-                <!-- MEMPELAI PRIA -->
-                <div>
-                    <img id="view-foto-pria" class="profile-img">
-                    <h3 id="view-nama-pria"></h3>
-                    <p id="view-ortu-pria" style="font-size: 0.8rem; margin-top: 5px;"></p>
-                    <a id="view-ig-pria" target="_blank" class="btn-main" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;"><i class="fab fa-instagram"></i> Instagram</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 4: COUNTDOWN -->
-        <section id="countdown">
-            <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px;">
-                <p style="font-size: 0.85rem; letter-spacing: 2px;">COUNTING DOWN TO THE DAY</p>
-                <div class="timer-grid">
-                    <div class="timer-box"><div class="timer-num" id="d-days">00</div><div class="timer-label">Hari</div></div>
-                    <div class="timer-box"><div class="timer-num" id="d-hours">00</div><div class="timer-label">Jam</div></div>
-                    <div class="timer-box"><div class="timer-num" id="d-minutes">00</div><div class="timer-label">Menit</div></div>
-                    <div class="timer-box"><div class="timer-num" id="d-seconds">00</div><div class="timer-label">Detik</div></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SLIDE 5: ACARA -->
-        <section id="event">
-            <!-- AKAD -->
-            <div class="event-card">
-                <h2>Akad Nikah</h2>
-                <p id="view-tgl-akad" style="font-weight: 600; margin-top: 5px;"></p>
-                <p id="view-jam-akad" style="font-size: 0.85rem; color: #666;"></p>
-                <h4 id="view-lokasi-akad" style="margin-top: 10px;"></h4>
-                <p id="view-alamat-akad" style="font-size: 0.8rem;"></p>
-                <a id="view-map-akad" target="_blank" class="btn-main"><i class="fas fa-map-marked-alt"></i> LIHAT LOKASI</a>
-            </div>
-
-            <!-- RESEPSI -->
-            <div class="event-card">
-                <h2>Resepsi</h2>
-                <p id="view-tgl-resepsi" style="font-weight: 600; margin-top: 5px;"></p>
-                <p id="view-jam-resepsi" style="font-size: 0.85rem; color: #666;"></p>
-                <h4 id="view-lokasi-resepsi" style="margin-top: 10px;"></h4>
-                <p id="view-alamat-resepsi" style="font-size: 0.8rem;"></p>
-                <a id="view-map-resepsi" target="_blank" class="btn-main"><i class="fas fa-map-marked-alt"></i> LIHAT LOKASI</a>
-            </div>
-        </section>
-
-        <!-- SLIDE 6: GALERI -->
-        <section id="gallery">
-            <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px;">
-                <h2>Galeri Foto</h2>
-                <div class="gallery-grid" id="view-galeri"></div>
-            </div>
-        </section>
-
-        <!-- SLIDE 7: RSVP & GUESTBOOK -->
-        <section id="rsvp">
-            <div class="rsvp-container">
-                <h2>Konfirmasi Kehadiran</h2>
-                <form id="rsvp-form" style="margin-top: 15px;">
-                    <div class="form-group"><label>Nama Lengkap</label><input type="text" id="r-name" class="form-control" required></div>
-                    <div class="form-group"><label>Status Kehadiran</label>
-                        <select id="r-status" class="form-control">
-                            <option value="Hadir">Hadir</option>
-                            <option value="Tidak Hadir">Tidak Hadir</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">KIRIM RSVP VIA WHATSAPP</button>
-                </form>
-
-                <h3 style="margin-top: 35px;">Buku Ucapan & Doa</h3>
-                <form id="guestbook-form" style="margin-top: 15px;">
-                    <div class="form-group"><input type="text" id="g-name" class="form-control" placeholder="Nama Anda" required></div>
-                    <div class="form-group"><textarea id="g-msg" class="form-control" rows="3" placeholder="Tulis ucapan..." required></textarea></div>
-                    <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">KIRIM UCAPAN</button>
-                </form>
-                <div class="guestbook-list" id="guestbook-box"></div>
-            </div>
-        </section>
-
-        <!-- SLIDE 8: AMPLOP DIGITAL -->
-        <section id="gift">
-            <div class="gift-wrapper">
-                <h2>Amplop Digital</h2>
-                <p style="font-size: 0.8rem; margin-top: 5px; margin-bottom: 15px;">Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika ingin memberikan tanda kasih secara digital, Anda dapat menekan tombol di bawah ini:</p>
-                
-                <!-- TOMBOL BUKA AMPLOP -->
-                <button class="btn-main" onclick="toggleGift()" id="btn-toggle-gift">
-                    <i class="fas fa-gift"></i> Klik Untuk Buka Amplop Digital
-                </button>
-
-                <!-- KOTAK TAMPILAN REKENING -->
-                <div class="gift-container" id="gift-box">
-                    <div id="view-rekening-list"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NAVBAR -->
-        <div class="navbar-bottom">
-            <a href="#cover" class="nav-item"><i class="fas fa-home"></i>Sampul</a>
-            <a href="#profile" class="nav-item"><i class="fas fa-user-friends"></i>Mempelai</a>
-            <a href="#event" class="nav-item"><i class="fas fa-calendar-alt"></i>Acara</a>
-            <a href="#gallery" class="nav-item"><i class="fas fa-images"></i>Galeri</a>
-            <a href="#rsvp" class="nav-item"><i class="fas fa-envelope"></i>RSVP</a>
-            <a href="#gift" class="nav-item"><i class="fas fa-gift"></i>Hadiah</a>
         </div>
 
+        <!-- ==========================================
+             KOLOM KANAN: ISI UNDANGAN (SCROLLABLE)
+             ========================================== -->
+        <div class="right-content">
+
+            <!-- SLIDE 2: AYAT -->
+            <section id="quote">
+                <div class="quran-box">
+                    <p id="view-ayat-teks"></p>
+                    <h4 id="view-ayat-sumber" style="margin-top: 15px; font-size: 0.85rem;"></h4>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: MEMPELAI -->
+            <section id="profile">
+                <div class="profile-card">
+                    <p style="font-size: 0.85rem; letter-spacing: 2px;">Assalamu'alaikum Wr. Wb.</p>
+                    <p style="margin-top: 8px;">Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Anda pada pernikahan kami:</p>
+
+                    <!-- MEMPELAI WANITA -->
+                    <div style="margin-top: 25px;">
+                        <img id="view-foto-wanita" class="profile-img">
+                        <h3 id="view-nama-wanita"></h3>
+                        <p id="view-ortu-wanita" style="font-size: 0.8rem; margin-top: 5px;"></p>
+                        <a id="view-ig-wanita" target="_blank" class="btn-main" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+
+                    <h2 style="margin: 20px 0;">&</h2>
+
+                    <!-- MEMPELAI PRIA -->
+                    <div>
+                        <img id="view-foto-pria" class="profile-img">
+                        <h3 id="view-nama-pria"></h3>
+                        <p id="view-ortu-pria" style="font-size: 0.8rem; margin-top: 5px;"></p>
+                        <a id="view-ig-pria" target="_blank" class="btn-main" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: COUNTDOWN -->
+            <section id="countdown">
+                <div class="profile-card">
+                    <p style="font-size: 0.85rem; letter-spacing: 2px;">COUNTING DOWN TO THE DAY</p>
+                    <div class="timer-grid">
+                        <div class="timer-box"><div class="timer-num" id="d-days">00</div><div class="timer-label">Hari</div></div>
+                        <div class="timer-box"><div class="timer-num" id="d-hours">00</div><div class="timer-label">Jam</div></div>
+                        <div class="timer-box"><div class="timer-num" id="d-minutes">00</div><div class="timer-label">Menit</div></div>
+                        <div class="timer-box"><div class="timer-num" id="d-seconds">00</div><div class="timer-label">Detik</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: ACARA -->
+            <section id="event">
+                <!-- AKAD -->
+                <div class="event-card">
+                    <h2>Akad Nikah</h2>
+                    <p id="view-tgl-akad" style="font-weight: 600; margin-top: 5px; color: var(--text-gold);"></p>
+                    <p id="view-jam-akad" style="font-size: 0.85rem;"></p>
+                    <h4 id="view-lokasi-akad" style="margin-top: 10px;"></h4>
+                    <p id="view-alamat-akad" style="font-size: 0.8rem;"></p>
+                    <a id="view-map-akad" target="_blank" class="btn-main"><i class="fas fa-map-marked-alt"></i> LIHAT LOKASI</a>
+                </div>
+
+                <!-- RESEPSI -->
+                <div class="event-card">
+                    <h2>Resepsi</h2>
+                    <p id="view-tgl-resepsi" style="font-weight: 600; margin-top: 5px; color: var(--text-gold);"></p>
+                    <p id="view-jam-resepsi" style="font-size: 0.85rem;"></p>
+                    <h4 id="view-lokasi-resepsi" style="margin-top: 10px;"></h4>
+                    <p id="view-alamat-resepsi" style="font-size: 0.8rem;"></p>
+                    <a id="view-map-resepsi" target="_blank" class="btn-main"><i class="fas fa-map-marked-alt"></i> LIHAT LOKASI</a>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: GALERI -->
+            <section id="gallery">
+                <div class="profile-card">
+                    <h2>Galeri Foto</h2>
+                    <div class="gallery-grid" id="view-galeri"></div>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: RSVP & GUESTBOOK -->
+            <section id="rsvp">
+                <div class="rsvp-container">
+                    <h2>Konfirmasi Kehadiran</h2>
+                    <form id="rsvp-form" style="margin-top: 15px;">
+                        <div class="form-group"><label>Nama Lengkap</label><input type="text" id="r-name" class="form-control" required></div>
+                        <div class="form-group"><label>Status Kehadiran</label>
+                            <select id="r-status" class="form-control" style="background: #0b1d3a; color: white;">
+                                <option value="Hadir">Hadir</option>
+                                <option value="Tidak Hadir">Tidak Hadir</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">KIRIM RSVP VIA WHATSAPP</button>
+                    </form>
+
+                    <h3 style="margin-top: 35px;">Buku Ucapan & Doa</h3>
+                    <form id="guestbook-form" style="margin-top: 15px;">
+                        <div class="form-group"><input type="text" id="g-name" class="form-control" placeholder="Nama Anda" required></div>
+                        <div class="form-group"><textarea id="g-msg" class="form-control" rows="3" placeholder="Tulis ucapan..." required></textarea></div>
+                        <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">KIRIM UCAPAN</button>
+                    </form>
+                    <div class="guestbook-list" id="guestbook-box"></div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: AMPLOP DIGITAL -->
+            <section id="gift">
+                <div class="gift-wrapper">
+                    <h2>Amplop Digital</h2>
+                    <p style="font-size: 0.8rem; margin-top: 5px; margin-bottom: 15px;">Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika ingin memberikan tanda kasih secara digital, Anda dapat menekan tombol di bawah ini:</p>
+                    
+                    <button class="btn-main" onclick="toggleGift()" id="btn-toggle-gift">
+                        <i class="fas fa-gift"></i> Klik Untuk Buka Amplop Digital
+                    </button>
+
+                    <div class="gift-container" id="gift-box">
+                        <div id="view-rekening-list"></div>
+                    </div>
+                </div>
+            </section>
+
+        </div> <!-- END RIGHT CONTENT -->
+
+    </div> <!-- END WRAPPER -->
+
+    <!-- NAVBAR BOTTOM -->
+    <div class="navbar-bottom">
+        <a href="#cover" class="nav-item"><i class="fas fa-home"></i>Sampul</a>
+        <a href="#profile" class="nav-item"><i class="fas fa-user-friends"></i>Mempelai</a>
+        <a href="#event" class="nav-item"><i class="fas fa-calendar-alt"></i>Acara</a>
+        <a href="#gallery" class="nav-item"><i class="fas fa-images"></i>Galeri</a>
+        <a href="#rsvp" class="nav-item"><i class="fas fa-envelope"></i>RSVP</a>
+        <a href="#gift" class="nav-item"><i class="fas fa-gift"></i>Hadiah</a>
     </div>
 
-    <!-- SCRIPT EDIT DATA (KONFIGURASI UNDANGAN BARU) -->
+    <!-- SCRIPT EDIT DATA & INTEGRASI -->
     <script>
-        // =========================================================================
-        // 🛠️ PUSAT PENGATURAN DATA UNDANGAN (CUKUP UBAH DATA DI BAWAH INI)
-        // =========================================================================
         const CONFIG = {
-            // 1. INFORMASI PASANGAN & TANGGAL HITUNG MUNDUR
             namaPasanganSingkat: "Shofa & Fuad",
             tglSingkat: "Minggu, 15 November 2026",
-            tglTargetCountdown: "November 15, 2026 07:30:00", // Format: Month DD, YYYY HH:MM:SS
-            noWhatsAppRSVP: "6283172367187", // Ganti no WA Anda untuk rekap RSVP
-
-            // 2. MUSIK LATAR
+            tglTargetCountdown: "November 15, 2026 07:30:00",
+            noWhatsAppRSVP: "6283172367187",
             linkMusik: "BACKSONG.mp3",
 
-            // 3. FOTO BACKGROUND TIAP SLIDE (Ganti nama file gambar sesuai yang di-upload)
+            // FOTO BACKGROUND TIAP SLIDE
             fotoSlide1Cover: "GALLERY1.jpeg",
             fotoSlide2Ayat: "GALLERY2.jpeg",
             fotoSlide3Mempelai: "backround1.jpeg",
@@ -382,27 +391,21 @@
             fotoSlide7RSVP: "backround1.jpeg",
             fotoSlide8Gift: "backround1.jpeg",
 
-            // 4. KUTIPAN AYAT SUCI
             ayatTeks: `"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."`,
             ayatSumber: "QS. Ar-Rum: 21",
 
-            // 5. DATA MEMPELAI WANITA
             mempelaiWanita: {
                 namaLengkap: "Shofa Bunyani Marsus",
                 orangTua: "Putri dari Bapak Asep & Ibu Ai",
                 foto: "wanita.jpeg",
                 instagram: "https://www.instagram.com/shofa_bunyani?stkn=MTVtcWQzZW5pcXpucw=="
             },
-
-            // 6. DATA MEMPELAI PRIA
             mempelaiPria: {
                 namaLengkap: "Fuad Abdurrohman Salam",
                 orangTua: "Putra dari Bapak H. Badrussalam & Ibu Yayah Kursiah",
                 foto: "pria.jpeg",
                 instagram: "https://www.instagram.com/shofa_bunyani?stkn=MTVtcWQzZW5pcXpucw=="
             },
-
-            // 7. DETAIL ACARA AKAD NIKAH
             akad: {
                 tanggal: "Minggu, 15 November 2026",
                 jam: "Pukul 07.30 - 09.30 WIB",
@@ -410,8 +413,6 @@
                 alamat: "blok Cigayam Desa Ranji Kulon, Kasokandel",
                 linkGoogleMaps: "https://maps.app.goo.gl/znF8PtySbXtdQGC26"
             },
-
-            // 8. DETAIL ACARA RESEPSI
             resepsi: {
                 tanggal: "Minggu, 15 November 2026",
                 jam: "Pukul 07.30 - 09.30 WIB",
@@ -419,27 +420,19 @@
                 alamat: "blok Cigayam Desa Ranji Kulon, Kasokandel",
                 linkGoogleMaps: "https://maps.app.goo.gl/znF8PtySbXtdQGC26"
             },
-
-            // 9. GALERI FOTO (Daftar foto di bagian slide galeri)
             galeriFoto: [
                 "GALLERY1.jpeg",
                 "GALLERY2.jpeg",
                 "GALLERY3.jpeg",
                 "GALLERY1.jpeg"
             ],
-
-            // 10. DAFTAR NO REKENING & HADIAH
             daftarRekening: [
                 { bank: "Dana", nomor: "083172367187", atasNama: "Shofa Bunyani Marsus" },
                 { bank: "Bank BSI", nomor: "7309950059", atasNama: "Fuad Abdurrohman Salam" }
             ]
         };
 
-        // =========================================================================
-        // 🚀 AUTOMATIC SYSTEM RENDER
-        // =========================================================================
         document.addEventListener('DOMContentLoaded', () => {
-            // Load Param Tamu ?to=NamaTamu
             const urlParams = new URLSearchParams(window.location.search);
             const toParam = urlParams.get('to');
             if (toParam) {
@@ -448,15 +441,14 @@
                 document.getElementById('g-name').value = toParam;
             }
 
-            // Helper Function Apply Background
+            // Apply Background
             const applyBg = (id, file) => {
                 const el = document.getElementById(id);
                 if(el && file) {
-                    el.style.backgroundImage = `linear-gradient(rgba(11, 29, 58, 0.4), rgba(11, 29, 58, 0.6)), url('${file}')`;
+                    el.style.backgroundImage = `linear-gradient(rgba(11, 29, 58, 0.5), rgba(11, 29, 58, 0.7)), url('${file}')`;
                 }
             };
 
-            // Render Background tiap Slide
             applyBg('cover', CONFIG.fotoSlide1Cover);
             applyBg('quote', CONFIG.fotoSlide2Ayat);
             applyBg('profile', CONFIG.fotoSlide3Mempelai);
@@ -466,16 +458,13 @@
             applyBg('rsvp', CONFIG.fotoSlide7RSVP);
             applyBg('gift', CONFIG.fotoSlide8Gift);
 
-            // Render Header & Cover Text
             document.getElementById('view-nama-pasangan').innerText = CONFIG.namaPasanganSingkat;
             document.getElementById('view-tgl-singkat').innerText = CONFIG.tglSingkat;
             document.getElementById('bg-music').src = CONFIG.linkMusik;
 
-            // Render Ayat
             document.getElementById('view-ayat-teks').innerText = CONFIG.ayatTeks;
             document.getElementById('view-ayat-sumber').innerText = CONFIG.ayatSumber;
 
-            // Render Mempelai
             document.getElementById('view-nama-wanita').innerText = CONFIG.mempelaiWanita.namaLengkap;
             document.getElementById('view-ortu-wanita').innerText = CONFIG.mempelaiWanita.orangTua;
             document.getElementById('view-foto-wanita').src = CONFIG.mempelaiWanita.foto;
@@ -486,7 +475,6 @@
             document.getElementById('view-foto-pria').src = CONFIG.mempelaiPria.foto;
             document.getElementById('view-ig-pria').href = CONFIG.mempelaiPria.instagram;
 
-            // Render Akad & Resepsi
             document.getElementById('view-tgl-akad').innerText = CONFIG.akad.tanggal;
             document.getElementById('view-jam-akad').innerText = CONFIG.akad.jam;
             document.getElementById('view-lokasi-akad').innerText = CONFIG.akad.lokasi;
@@ -499,7 +487,7 @@
             document.getElementById('view-alamat-resepsi').innerText = CONFIG.resepsi.alamat;
             document.getElementById('view-map-resepsi').href = CONFIG.resepsi.linkGoogleMaps;
 
-            // Render Galeri Foto
+            // Galeri Foto
             const galeriBox = document.getElementById('view-galeri');
             CONFIG.galeriFoto.forEach(url => {
                 const img = document.createElement('img');
@@ -507,7 +495,7 @@
                 galeriBox.appendChild(img);
             });
 
-            // Render Rekening & Bank
+            // Rekening
             const rekBox = document.getElementById('view-rekening-list');
             CONFIG.daftarRekening.forEach((item, index) => {
                 const card = document.createElement('div');
@@ -515,7 +503,7 @@
                 card.innerHTML = `
                     <i class="fas fa-credit-card" style="font-size: 1.4rem; color: var(--text-gold);"></i>
                     <h4 style="margin-top: 5px;">${item.bank}</h4>
-                    <div class="rek-number" id="rek-id-${index}">${item.nomor}</div>
+                    <div style="font-size: 1.2rem; font-weight: bold; color: var(--text-gold); margin: 5px 0;" id="rek-id-${index}">${item.nomor}</div>
                     <p>a.n. <strong>${item.atasNama}</strong></p>
                     <button class="btn-main" onclick="copyRekening('rek-id-${index}')" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;">
                         <i class="fas fa-copy"></i> Salin Data
@@ -524,7 +512,7 @@
                 rekBox.appendChild(card);
             });
 
-            // Start Countdown
+            // Countdown Timer
             const target = new Date(CONFIG.tglTargetCountdown).getTime();
             setInterval(() => {
                 const diff = target - new Date().getTime();
@@ -536,6 +524,30 @@
                 }
             }, 1000);
         });
+
+        // FUNGSI KONTROL MUSIK
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        let isPlaying = false;
+
+        function playMusic() {
+            if (!isPlaying) {
+                audio.play();
+                isPlaying = true;
+                musicBtn.classList.add('rotate');
+            }
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicBtn.classList.remove('rotate');
+            } else {
+                audio.play();
+                musicBtn.classList.add('rotate');
+            }
+            isPlaying = !isPlaying;
+        }
 
         // FUNGSI TOGGLE AMPLOP DIGITAL
         function toggleGift() {
@@ -549,17 +561,6 @@
                 giftBox.classList.add('active');
                 btn.innerHTML = `<i class="fas fa-chevron-up"></i> Tutup Amplop Digital`;
             }
-        }
-
-        // MUSIK CONTROL
-        const audio = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-btn');
-        let isPlaying = false;
-        function playMusic() { audio.play(); isPlaying = true; musicBtn.classList.add('rotate'); }
-        function toggleMusic() {
-            if (isPlaying) { audio.pause(); musicBtn.classList.remove('rotate'); } 
-            else { audio.play(); musicBtn.classList.add('rotate'); }
-            isPlaying = !isPlaying;
         }
 
         // SALIN REKENING FUNGSI
@@ -587,7 +588,7 @@
             
             const item = document.createElement('div');
             item.className = 'guestbook-item';
-            item.innerHTML = `<h5>${gName}</h5><p>${gMsg}</p>`;
+            item.innerHTML = `<h5 style="color: var(--text-gold);">${gName}</h5><p style="font-size:0.85rem;">${gMsg}</p>`;
             box.prepend(item);
 
             document.getElementById('g-msg').value = '';
