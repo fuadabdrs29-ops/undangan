@@ -13,32 +13,32 @@
 
     <style>
         :root {
-            --bg-color: #0b1d3a;          /* Biru gelap (Navy) */
-            --card-bg: rgba(15, 30, 58, 0.85); /* Kartu semi-transparan */
-            --text-dark: #f0f4f8;         /* Teks utama */
-            --text-gold: #e5c158;         /* Warna emas elegan */
+            --bg-color: #0b1d3a;          /* Biru Navy */
+            --card-bg: rgba(15, 30, 58, 0.85); /* Kartu semi transparan */
+            --text-dark: #f0f4f8;         /* Teks krem/putih */
+            --text-gold: #e5c158;         /* Warna Emas */
             --font-serif: 'Playfair Display', serif;
             --font-title: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: var(--font-sans); background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
+        body { font-family: var(--font-sans); background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
 
         /* ==========================================
-           SPLIT SCREEN LAYOUT MANAGER (LAPTOP vs HP)
+           LAYOOUT SPLIT SCREEN (DESKTOP & LAPTOP)
            ========================================== */
-        .wrapper {
+        .app-wrapper {
             display: flex;
             flex-direction: column;
             width: 100%;
             min-height: 100vh;
         }
 
-        /* KOLOM KIRI: COVER (STICKY/DIEM DI LAPTOP) */
-        .left-cover {
+        /* LAYAR KIRI (COVER) */
+        .left-side {
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -51,56 +51,64 @@
         }
 
         .guest-card {
-            margin-top: 25px;
+            margin-top: 20px;
             padding: 20px;
-            background: rgba(15, 30, 58, 0.9);
+            background: rgba(11, 29, 58, 0.85);
             border-radius: 12px;
             border: 1px solid var(--text-gold);
             width: 100%;
-            max-width: 380px;
+            max-width: 360px;
             backdrop-filter: blur(5px);
         }
 
-        /* KOLOM KANAN: ISI UNDANGAN (SCROLLABLE) */
-        .right-content {
+        /* LAYAR KANAN (CONTENT) */
+        .right-side {
             width: 100%;
             background-color: var(--bg-color);
             position: relative;
-            padding-bottom: 90px;
+            padding-bottom: 80px;
         }
 
-        /* MEDIA QUERY: TAMPILAN KHUSUS LAPTOP/PC (>992px) */
+        /* KHUSUS TAMPILAN LAPTOP / DESKTOP (Width > 992px) */
         @media (min-width: 992px) {
-            .wrapper {
-                flex-direction: row;
+            body {
+                overflow: hidden; /* Mencegah double scrollbar di layar utama */
             }
 
-            .left-cover {
-                width: 50%;
+            .app-wrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                height: 100vh;
+            }
+
+            .left-side {
                 height: 100vh;
                 position: sticky;
                 top: 0;
             }
 
-            .right-content {
-                width: 50%;
-                min-height: 100vh;
+            .right-side {
+                height: 100vh;
+                overflow-y: auto; /* Hanya kolom kanan yang bisa di-scroll */
+                scroll-behavior: smooth;
             }
 
             .navbar-bottom {
-                max-width: 50% !important;
-                left: 75% !important;
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                left: 50% !important; /* Pas di bawah kolom kanan */
+                width: 50% !important;
+                transform: none !important;
             }
         }
 
-        /* STYLING SECTION & SEKSI UNDANGAN */
+        /* STYLE ELEMEN UNDANGAN */
         section {
             padding: 50px 20px;
             border-bottom: 1px solid rgba(229, 193, 88, 0.2);
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
             text-align: center;
         }
 
@@ -123,7 +131,6 @@
             cursor: pointer;
         }
 
-        /* SLIDE CARDS */
         .quran-box, .profile-card, .rsvp-container, .gift-wrapper, .event-card {
             background: var(--card-bg);
             backdrop-filter: blur(6px);
@@ -143,7 +150,7 @@
             border: 3px solid var(--text-gold);
         }
 
-        /* COUNTDOWN */
+        /* TIMER */
         .timer-grid { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
         .timer-box { background: var(--text-gold); color: #0b1d3a; padding: 10px; border-radius: 8px; min-width: 65px; }
         .timer-num { font-size: 1.3rem; font-weight: bold; }
@@ -153,32 +160,22 @@
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
         .gallery-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
 
-        /* FORM STYLING */
+        /* FORM */
         .form-group { text-align: left; margin-bottom: 12px; }
         .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; color: var(--text-gold); }
         .form-control { width: 100%; padding: 10px; border: 1px solid var(--text-gold); background: rgba(255,255,255,0.1); color: #fff; border-radius: 6px; }
         .guestbook-list { margin-top: 20px; text-align: left; max-height: 220px; overflow-y: auto; }
         .guestbook-item { background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid var(--text-gold); }
 
-        /* AMPLOP DIGITAL */
+        /* AMPLOP DIGITAL TOGGLE */
         .gift-container {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-in-out, opacity 0.4s ease;
             opacity: 0;
         }
-        .gift-container.active {
-            max-height: 1000px;
-            opacity: 1;
-            margin-top: 15px;
-        }
-        .gift-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px dashed var(--text-gold);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-        }
+        .gift-container.active { max-height: 1000px; opacity: 1; margin-top: 15px; }
+        .gift-card { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--text-gold); border-radius: 10px; padding: 20px; margin-bottom: 15px; }
 
         /* NAVBAR BOTTOM */
         .navbar-bottom {
@@ -200,7 +197,7 @@
         .nav-item i { font-size: 1.1rem; }
         .nav-item:hover { color: var(--text-gold); }
 
-        /* MUSIC BUTTON FLOATING */
+        /* TOMBOL MUSIK FLOATING */
         .music-btn {
             position: fixed; bottom: 75px; right: 15px; width: 40px; height: 40px;
             background: var(--text-gold); color: #0b1d3a; border-radius: 50%;
@@ -213,22 +210,22 @@
 </head>
 <body>
 
-    <!-- PEMUTAR MUSIK LATAR -->
+    <!-- PEMUTAR MUSIK -->
     <div class="music-btn" onclick="toggleMusic()" id="music-btn"><i class="fas fa-music"></i></div>
     <audio id="bg-music" loop></audio>
 
-    <div class="wrapper">
+    <div class="app-wrapper">
 
         <!-- ==========================================
-             KOLOM KIRI: COVER (DIEM / FIXED DI LAPTOP)
+             KOLOM KIRI: COVER (DIEM / STICKY DI LAPTOP)
              ========================================== -->
-        <div class="left-cover" id="cover">
+        <div class="left-side" id="cover">
             <p style="font-size: 0.85rem; letter-spacing: 3px; color: var(--text-gold);">UNDANGAN PERNIKAHAN</p>
             <h1 id="view-nama-pasangan" style="font-size: 2.3rem; margin: 15px 0;"></h1>
             <p id="view-tgl-singkat" style="font-weight: 600;"></p>
 
             <div class="guest-card">
-                <p style="font-size: 0.8rem; color: var(--text-dark);">Kepada Yth. <br>Bapak/Ibu/Saudara/i</p>
+                <p style="font-size: 0.8rem;">Kepada Yth. <br>Bapak/Ibu/Saudara/i</p>
                 <h3 id="guest-name" style="margin: 8px 0;">Nama Tamu</h3>
                 <a href="#quote" class="btn-main" onclick="playMusic()"><i class="fas fa-envelope-open"></i> BUKA UNDANGAN</a>
             </div>
@@ -237,7 +234,7 @@
         <!-- ==========================================
              KOLOM KANAN: ISI UNDANGAN (SCROLLABLE)
              ========================================== -->
-        <div class="right-content">
+        <div class="right-side" id="scrollable-container">
 
             <!-- SLIDE 2: AYAT -->
             <section id="quote">
@@ -253,7 +250,7 @@
                     <p style="font-size: 0.85rem; letter-spacing: 2px;">Assalamu'alaikum Wr. Wb.</p>
                     <p style="margin-top: 8px;">Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Anda pada pernikahan kami:</p>
 
-                    <!-- MEMPELAI WANITA -->
+                    <!-- WANITA -->
                     <div style="margin-top: 25px;">
                         <img id="view-foto-wanita" class="profile-img">
                         <h3 id="view-nama-wanita"></h3>
@@ -263,7 +260,7 @@
 
                     <h2 style="margin: 20px 0;">&</h2>
 
-                    <!-- MEMPELAI PRIA -->
+                    <!-- PRIA -->
                     <div>
                         <img id="view-foto-pria" class="profile-img">
                         <h3 id="view-nama-pria"></h3>
@@ -358,9 +355,9 @@
                 </div>
             </section>
 
-        </div> <!-- END RIGHT CONTENT -->
+        </div> <!-- END RIGHT SIDE -->
 
-    </div> <!-- END WRAPPER -->
+    </div> <!-- END APP WRAPPER -->
 
     <!-- NAVBAR BOTTOM -->
     <div class="navbar-bottom">
@@ -372,7 +369,7 @@
         <a href="#gift" class="nav-item"><i class="fas fa-gift"></i>Hadiah</a>
     </div>
 
-    <!-- SCRIPT EDIT DATA & INTEGRASI -->
+    <!-- SCRIPT CONFIG & SYSTEM -->
     <script>
         const CONFIG = {
             namaPasanganSingkat: "Shofa & Fuad",
@@ -512,7 +509,7 @@
                 rekBox.appendChild(card);
             });
 
-            // Countdown Timer
+            // Timer
             const target = new Date(CONFIG.tglTargetCountdown).getTime();
             setInterval(() => {
                 const diff = target - new Date().getTime();
@@ -525,7 +522,7 @@
             }, 1000);
         });
 
-        // FUNGSI KONTROL MUSIK
+        // MUSIK CONTROL
         const audio = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         let isPlaying = false;
@@ -549,11 +546,9 @@
             isPlaying = !isPlaying;
         }
 
-        // FUNGSI TOGGLE AMPLOP DIGITAL
         function toggleGift() {
             const giftBox = document.getElementById('gift-box');
             const btn = document.getElementById('btn-toggle-gift');
-            
             if (giftBox.classList.contains('active')) {
                 giftBox.classList.remove('active');
                 btn.innerHTML = `<i class="fas fa-gift"></i> Klik Untuk Buka Amplop Digital`;
@@ -563,14 +558,12 @@
             }
         }
 
-        // SALIN REKENING FUNGSI
         function copyRekening(id) {
             const val = document.getElementById(id).innerText;
             navigator.clipboard.writeText(val);
             alert('Data berhasil disalin: ' + val);
         }
 
-        // RSVP VIA WHATSAPP
         document.getElementById('rsvp-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const nama = document.getElementById('r-name').value;
@@ -579,18 +572,15 @@
             window.open(`https://wa.me/${CONFIG.noWhatsAppRSVP}?text=${encodeURIComponent(textWA)}`, '_blank');
         });
 
-        // BUKU UCAPAN SYSTEM
         document.getElementById('guestbook-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const gName = document.getElementById('g-name').value;
             const gMsg = document.getElementById('g-msg').value;
             const box = document.getElementById('guestbook-box');
-            
             const item = document.createElement('div');
             item.className = 'guestbook-item';
             item.innerHTML = `<h5 style="color: var(--text-gold);">${gName}</h5><p style="font-size:0.85rem;">${gMsg}</p>`;
             box.prepend(item);
-
             document.getElementById('g-msg').value = '';
             alert('Ucapan Anda berhasil ditampilkan!');
         });
