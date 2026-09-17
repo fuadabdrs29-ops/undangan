@@ -35,19 +35,26 @@
             padding-bottom: 90px;
         }
 
-        section { padding: 50px 20px; border-bottom: 1px solid #eaeaea; }
+        /* DUKUNGAN BACKGROUND SETIAP SLIDE */
+        section {
+            padding: 50px 20px;
+            border-bottom: 1px solid #eaeaea;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
         h1, h2, h3, h4 { font-family: var(--font-title); color: var(--text-gold); font-weight: 600; }
         p { font-size: 0.9rem; color: #555; }
 
-        /* COVER */
+        /* SLIDE 1: COVER */
         #cover {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-size: cover;
-            background-position: center;
             padding: 30px 20px;
         }
 
@@ -76,18 +83,12 @@
             cursor: pointer;
         }
 
-        /* AYAT - DENGAN BACKGROUND TEMA FLORAL/ORNAMEN */
-        #quote {
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
+        /* SLIDE 2: AYAT & QUOTE */
         .quran-box {
             font-family: var(--font-serif);
             font-style: italic;
             font-size: 0.92rem;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(4px);
             padding: 25px 20px;
             border-radius: 12px;
@@ -95,7 +96,14 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        /* PROFIL MEMPELAI */
+        /* SLIDE 3: PROFIL MEMPELAI */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
         .profile-img {
             width: 170px;
             height: 230px;
@@ -105,15 +113,15 @@
             border: 3px solid var(--text-gold);
         }
 
-        /* TIMER */
+        /* SLIDE 4: TIMER COUNTDOWN */
         .timer-grid { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
         .timer-box { background: var(--text-gold); color: white; padding: 10px; border-radius: 8px; min-width: 65px; }
         .timer-num { font-size: 1.3rem; font-weight: bold; }
         .timer-label { font-size: 0.7rem; text-transform: uppercase; }
 
-        /* ACARA CARD */
+        /* SLIDE 5: ACARA CARD */
         .event-card {
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.95);
             border: 1px solid #e8e8e8;
             border-radius: 12px;
             padding: 25px 20px;
@@ -121,18 +129,30 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
 
-        /* GALERI FOTO GRID */
+        /* SLIDE 6: GALERI FOTO GRID */
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
         .gallery-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
 
-        /* FORM RSVP & GUESTBOOK */
+        /* SLIDE 7: FORM RSVP & GUESTBOOK */
+        .rsvp-container {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
         .form-group { text-align: left; margin-bottom: 12px; }
         .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
         .form-control { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; }
         .guestbook-list { margin-top: 20px; text-align: left; max-height: 220px; overflow-y: auto; }
         .guestbook-item { background: #f8f9fa; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid var(--text-gold); }
 
-        /* REKENING CARD & COLLAPSE EFFECT */
+        /* SLIDE 8: REKENING CARD & COLLAPSE EFFECT */
+        .gift-wrapper {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
         .gift-container {
             max-height: 0;
             overflow: hidden;
@@ -141,7 +161,7 @@
         }
 
         .gift-container.active {
-            max-height: 1000px; /* Cukup besar untuk menampung seluruh daftar rekening */
+            max-height: 1000px;
             opacity: 1;
             margin-top: 15px;
         }
@@ -205,7 +225,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 2: AYAT (DENGAN BACKGROUND THEME) -->
+        <!-- SLIDE 2: AYAT -->
         <section id="quote">
             <div class="quran-box">
                 <p id="view-ayat-teks"></p>
@@ -215,36 +235,40 @@
 
         <!-- SLIDE 3: MEMPELAI -->
         <section id="profile">
-            <p style="font-size: 0.85rem; letter-spacing: 2px;">Assalamu'alaikum Wr. Wb.</p>
-            <p style="margin-top: 8px;">Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Anda pada pernikahan kami:</p>
+            <div class="profile-card">
+                <p style="font-size: 0.85rem; letter-spacing: 2px;">Assalamu'alaikum Wr. Wb.</p>
+                <p style="margin-top: 8px;">Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Anda pada pernikahan kami:</p>
 
-            <!-- MEMPELAI WANITA -->
-            <div style="margin-top: 30px;">
-                <img id="view-foto-wanita" class="profile-img">
-                <h3 id="view-nama-wanita"></h3>
-                <p id="view-ortu-wanita" style="font-size: 0.8rem; margin-top: 5px;"></p>
-                <a id="view-ig-wanita" target="_blank" class="btn-main" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;"><i class="fab fa-instagram"></i> Instagram</a>
-            </div>
+                <!-- MEMPELAI WANITA -->
+                <div style="margin-top: 25px;">
+                    <img id="view-foto-wanita" class="profile-img">
+                    <h3 id="view-nama-wanita"></h3>
+                    <p id="view-ortu-wanita" style="font-size: 0.8rem; margin-top: 5px;"></p>
+                    <a id="view-ig-wanita" target="_blank" class="btn-main" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
 
-            <h2 style="margin: 25px 0;">&</h2>
+                <h2 style="margin: 20px 0;">&</h2>
 
-            <!-- MEMPELAI PRIA -->
-            <div>
-                <img id="view-foto-pria" class="profile-img">
-                <h3 id="view-nama-pria"></h3>
-                <p id="view-ortu-pria" style="font-size: 0.8rem; margin-top: 5px;"></p>
-                <a id="view-ig-pria" target="_blank" class="btn-main" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;"><i class="fab fa-instagram"></i> Instagram</a>
+                <!-- MEMPELAI PRIA -->
+                <div>
+                    <img id="view-foto-pria" class="profile-img">
+                    <h3 id="view-nama-pria"></h3>
+                    <p id="view-ortu-pria" style="font-size: 0.8rem; margin-top: 5px;"></p>
+                    <a id="view-ig-pria" target="_blank" class="btn-main" style="padding: 4px 12px; font-size: 0.75rem; margin-top: 8px;"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
             </div>
         </section>
 
         <!-- SLIDE 4: COUNTDOWN -->
         <section id="countdown">
-            <p style="font-size: 0.85rem; letter-spacing: 2px;">COUNTING DOWN TO THE DAY</p>
-            <div class="timer-grid">
-                <div class="timer-box"><div class="timer-num" id="d-days">00</div><div class="timer-label">Hari</div></div>
-                <div class="timer-box"><div class="timer-num" id="d-hours">00</div><div class="timer-label">Jam</div></div>
-                <div class="timer-box"><div class="timer-num" id="d-minutes">00</div><div class="timer-label">Menit</div></div>
-                <div class="timer-box"><div class="timer-num" id="d-seconds">00</div><div class="timer-label">Detik</div></div>
+            <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px;">
+                <p style="font-size: 0.85rem; letter-spacing: 2px;">COUNTING DOWN TO THE DAY</p>
+                <div class="timer-grid">
+                    <div class="timer-box"><div class="timer-num" id="d-days">00</div><div class="timer-label">Hari</div></div>
+                    <div class="timer-box"><div class="timer-num" id="d-hours">00</div><div class="timer-label">Jam</div></div>
+                    <div class="timer-box"><div class="timer-num" id="d-minutes">00</div><div class="timer-label">Menit</div></div>
+                    <div class="timer-box"><div class="timer-num" id="d-seconds">00</div><div class="timer-label">Detik</div></div>
+                </div>
             </div>
         </section>
 
@@ -273,46 +297,52 @@
 
         <!-- SLIDE 6: GALERI -->
         <section id="gallery">
-            <h2>Galeri Foto</h2>
-            <div class="gallery-grid" id="view-galeri"></div>
+            <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 12px;">
+                <h2>Galeri Foto</h2>
+                <div class="gallery-grid" id="view-galeri"></div>
+            </div>
         </section>
 
         <!-- SLIDE 7: RSVP & GUESTBOOK -->
         <section id="rsvp">
-            <h2>Konfirmasi Kehadiran</h2>
-            <form id="rsvp-form" style="margin-top: 15px;">
-                <div class="form-group"><label>Nama Lengkap</label><input type="text" id="r-name" class="form-control" required></div>
-                <div class="form-group"><label>Status Kehadiran</label>
-                    <select id="r-status" class="form-control">
-                        <option value="Hadir">Hadir</option>
-                        <option value="Tidak Hadir">Tidak Hadir</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">KIRIM RSVP VIA WHATSAPP</button>
-            </form>
+            <div class="rsvp-container">
+                <h2>Konfirmasi Kehadiran</h2>
+                <form id="rsvp-form" style="margin-top: 15px;">
+                    <div class="form-group"><label>Nama Lengkap</label><input type="text" id="r-name" class="form-control" required></div>
+                    <div class="form-group"><label>Status Kehadiran</label>
+                        <select id="r-status" class="form-control">
+                            <option value="Hadir">Hadir</option>
+                            <option value="Tidak Hadir">Tidak Hadir</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">KIRIM RSVP VIA WHATSAPP</button>
+                </form>
 
-            <h3 style="margin-top: 35px;">Buku Ucapan & Doa</h3>
-            <form id="guestbook-form" style="margin-top: 15px;">
-                <div class="form-group"><input type="text" id="g-name" class="form-control" placeholder="Nama Anda" required></div>
-                <div class="form-group"><textarea id="g-msg" class="form-control" rows="3" placeholder="Tulis ucapan..." required></textarea></div>
-                <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">KIRIM UCAPAN</button>
-            </form>
-            <div class="guestbook-list" id="guestbook-box"></div>
+                <h3 style="margin-top: 35px;">Buku Ucapan & Doa</h3>
+                <form id="guestbook-form" style="margin-top: 15px;">
+                    <div class="form-group"><input type="text" id="g-name" class="form-control" placeholder="Nama Anda" required></div>
+                    <div class="form-group"><textarea id="g-msg" class="form-control" rows="3" placeholder="Tulis ucapan..." required></textarea></div>
+                    <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">KIRIM UCAPAN</button>
+                </form>
+                <div class="guestbook-list" id="guestbook-box"></div>
+            </div>
         </section>
 
-        <!-- SLIDE 8: AMPLOP DIGITAL (INTERAKTIF & BISA BUKA/TUTUP) -->
+        <!-- SLIDE 8: AMPLOP DIGITAL -->
         <section id="gift">
-            <h2>Amplop Digital</h2>
-            <p style="font-size: 0.8rem; margin-top: 5px; margin-bottom: 15px;">Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika ingin memberikan tanda kasih secara digital, Anda dapat menekan tombol di bawah ini:</p>
-            
-            <!-- TOMBOL BUKA AMPLOP -->
-            <button class="btn-main" onclick="toggleGift()" id="btn-toggle-gift">
-                <i class="fas fa-gift"></i> Klik Untuk Buka Amplop Digital
-            </button>
+            <div class="gift-wrapper">
+                <h2>Amplop Digital</h2>
+                <p style="font-size: 0.8rem; margin-top: 5px; margin-bottom: 15px;">Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika ingin memberikan tanda kasih secara digital, Anda dapat menekan tombol di bawah ini:</p>
+                
+                <!-- TOMBOL BUKA AMPLOP -->
+                <button class="btn-main" onclick="toggleGift()" id="btn-toggle-gift">
+                    <i class="fas fa-gift"></i> Klik Untuk Buka Amplop Digital
+                </button>
 
-            <!-- KOTAK TAMPILAN REKENING (Hidden by Default) -->
-            <div class="gift-container" id="gift-box">
-                <div id="view-rekening-list"></div>
+                <!-- KOTAK TAMPILAN REKENING -->
+                <div class="gift-container" id="gift-box">
+                    <div id="view-rekening-list"></div>
+                </div>
             </div>
         </section>
 
@@ -343,9 +373,15 @@
             // 2. MUSIK LATAR
             linkMusik: "BACKSONG.mp3",
 
-            // 3. FOTO COVER & BACKGROUND SLIDE 2
-            fotoCover: "GALLERY1.jpeg",
-            fotoBgSlide2: "GALLERY2.jpeg", // Gambar latar untuk slide ke-2 (Ayat)
+            // 3. FOTO BACKGROUND TIAP SLIDE (Ganti nama file gambar sesuai yang di-upload)
+            fotoSlide1Cover: "GALLERY1.jpeg",
+            fotoSlide2Ayat: "GALLERY2.jpeg",
+            fotoSlide3Mempelai: "GALLERY3.jpeg",
+            fotoSlide4Countdown: "GALLERY1.jpeg",
+            fotoSlide5Acara: "GALLERY2.jpeg",
+            fotoSlide6Galeri: "GALLERY3.jpeg",
+            fotoSlide7RSVP: "GALLERY1.jpeg",
+            fotoSlide8Gift: "GALLERY2.jpeg",
 
             // 4. KUTIPAN AYAT SUCI
             ayatTeks: `"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."`,
@@ -362,7 +398,7 @@
             // 6. DATA MEMPELAI PRIA
             mempelaiPria: {
                 namaLengkap: "Fuad Abdurrohman Salam",
-                orangTua: "Putra dari Bapak H. Badrussalam  & Ibu Yayah Kursiah",
+                orangTua: "Putra dari Bapak H. Badrussalam & Ibu Yayah Kursiah",
                 foto: "pria.jpeg",
                 instagram: "https://www.instagram.com/shofa_bunyani?stkn=MTVtcWQzZW5pcXpucw=="
             },
@@ -385,7 +421,7 @@
                 linkGoogleMaps: "https://maps.app.goo.gl/znF8PtySbXtdQGC26"
             },
 
-            // 9. GALERI FOTO (Bisa Tambah Link Foto Baru di dalam Kurung)
+            // 9. GALERI FOTO (Daftar foto di bagian slide galeri)
             galeriFoto: [
                 "GALLERY1.jpeg",
                 "GALLERY2.jpeg",
@@ -393,7 +429,7 @@
                 "GALLERY1.jpeg"
             ],
 
-            // 10. DAFTAR NO REKENING & HADIAH (Bisa Tambah / Hapus Bank Sesuai Kebutuhan)
+            // 10. DAFTAR NO REKENING & HADIAH
             daftarRekening: [
                 { bank: "Dana", nomor: "083172367187", atasNama: "Shofa Bunyani Marsus" },
                 { bank: "Bank BSI", nomor: "7309950059", atasNama: "Fuad Abdurrohman Salam" }
@@ -413,14 +449,28 @@
                 document.getElementById('g-name').value = toParam;
             }
 
-            // Render Header & Cover
+            // Helper Function Apply Background
+            const applyBg = (id, file) => {
+                const el = document.getElementById(id);
+                if(el && file) {
+                    el.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('${file}')`;
+                }
+            };
+
+            // Render Background tiap Slide
+            applyBg('cover', CONFIG.fotoSlide1Cover);
+            applyBg('quote', CONFIG.fotoSlide2Ayat);
+            applyBg('profile', CONFIG.fotoSlide3Mempelai);
+            applyBg('countdown', CONFIG.fotoSlide4Countdown);
+            applyBg('event', CONFIG.fotoSlide5Acara);
+            applyBg('gallery', CONFIG.fotoSlide6Galeri);
+            applyBg('rsvp', CONFIG.fotoSlide7RSVP);
+            applyBg('gift', CONFIG.fotoSlide8Gift);
+
+            // Render Header & Cover Text
             document.getElementById('view-nama-pasangan').innerText = CONFIG.namaPasanganSingkat;
             document.getElementById('view-tgl-singkat').innerText = CONFIG.tglSingkat;
-            document.getElementById('cover').style.backgroundImage = `linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.85)), url('${CONFIG.fotoCover}')`;
             document.getElementById('bg-music').src = CONFIG.linkMusik;
-
-            // Render Background Slide 2 (Ayat)
-            document.getElementById('quote').style.backgroundImage = `linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('${CONFIG.fotoBgSlide2}')`;
 
             // Render Ayat
             document.getElementById('view-ayat-teks').innerText = CONFIG.ayatTeks;
@@ -488,7 +538,7 @@
             }, 1000);
         });
 
-        // FUNGSI TOGGLE AMPLOP DIGITAL (BUKA / TUTUP)
+        // FUNGSI TOGGLE AMPLOP DIGITAL
         function toggleGift() {
             const giftBox = document.getElementById('gift-box');
             const btn = document.getElementById('btn-toggle-gift');
