@@ -13,15 +13,14 @@
 
     <style>
         :root {
-            --bg-color: #fcfbf9;
-            --card-bg: #ffffff;
-            --text-dark: #2c3e50;
-            --text-gold: #b38b4d;
+            --bg-color: #0b1d3a;          /* Biru gelap (Navy) menyesuaikan background */
+            --card-bg: rgba(15, 30, 58, 0.85); /* Kartu semi-transparan biru gelap */
+            --text-dark: #f0f4f8;         /* Teks utama berwarna putih agak krem agar tidak silau */
+            --text-gold: #e5c158;         /* Warna emas elegan menyesuaikan ornamen awan */
             --font-serif: 'Playfair Display', serif;
             --font-title: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: var(--font-sans); background-color: #111; color: var(--text-dark); text-align: center; line-height: 1.6; }
 
@@ -453,7 +452,7 @@
             const applyBg = (id, file) => {
                 const el = document.getElementById(id);
                 if(el && file) {
-                    el.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('${file}')`;
+                    el.style.backgroundImage = `linear-gradient(rgba(11, 29, 58, 0.4), rgba(11, 29, 58, 0.6)), url('${file}')`;
                 }
             };
 
