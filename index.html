@@ -76,16 +76,23 @@
             cursor: pointer;
         }
 
-        /* AYAT */
+        /* AYAT - DENGAN BACKGROUND TEMA FLORAL/ORNAMEN */
+        #quote {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
         .quran-box {
             font-family: var(--font-serif);
             font-style: italic;
             font-size: 0.92rem;
-            background: #fff;
-            padding: 22px;
-            border-radius: 10px;
-            border-left: 4px solid var(--text-gold);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            padding: 25px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--text-gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         /* PROFIL MEMPELAI */
@@ -125,13 +132,26 @@
         .guestbook-list { margin-top: 20px; text-align: left; max-height: 220px; overflow-y: auto; }
         .guestbook-item { background: #f8f9fa; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid var(--text-gold); }
 
-        /* REKENING CARD */
+        /* REKENING CARD & COLLAPSE EFFECT */
+        .gift-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .gift-container.active {
+            max-height: 1000px; /* Cukup besar untuk menampung seluruh daftar rekening */
+            opacity: 1;
+            margin-top: 15px;
+        }
+
         .gift-card {
             background: #fdfbf7;
             border: 1px dashed var(--text-gold);
             border-radius: 10px;
             padding: 20px;
-            margin-top: 15px;
+            margin-bottom: 15px;
         }
 
         /* NAVBAR BOTTOM */
@@ -185,7 +205,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 2: AYAT -->
+        <!-- SLIDE 2: AYAT (DENGAN BACKGROUND THEME) -->
         <section id="quote">
             <div class="quran-box">
                 <p id="view-ayat-teks"></p>
@@ -280,11 +300,20 @@
             <div class="guestbook-list" id="guestbook-box"></div>
         </section>
 
-        <!-- SLIDE 8: AMPLOP DIGITAL -->
+        <!-- SLIDE 8: AMPLOP DIGITAL (INTERAKTIF & BISA BUKA/TUTUP) -->
         <section id="gift">
             <h2>Amplop Digital</h2>
-            <p style="font-size: 0.8rem; margin-top: 5px;">Bagi keluarga/rekan yang ingin memberikan hadiah cashless, dapat dikirimkan ke rekening berikut:</p>
-            <div id="view-rekening-list"></div>
+            <p style="font-size: 0.8rem; margin-top: 5px; margin-bottom: 15px;">Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika ingin memberikan tanda kasih secara digital, Anda dapat menekan tombol di bawah ini:</p>
+            
+            <!-- TOMBOL BUKA AMPLOP -->
+            <button class="btn-main" onclick="toggleGift()" id="btn-toggle-gift">
+                <i class="fas fa-gift"></i> Klik Untuk Buka Amplop Digital
+            </button>
+
+            <!-- KOTAK TAMPILAN REKENING (Hidden by Default) -->
+            <div class="gift-container" id="gift-box">
+                <div id="view-rekening-list"></div>
+            </div>
         </section>
 
         <!-- NAVBAR -->
@@ -314,8 +343,9 @@
             // 2. MUSIK LATAR
             linkMusik: "BACKSONG.mp3",
 
-            // 3. FOTO COVER LATAR (Link Gambar)
+            // 3. FOTO COVER & BACKGROUND SLIDE 2
             fotoCover: "GALLERY1.jpeg",
+            fotoBgSlide2: "GALLERY2.jpeg", // Gambar latar untuk slide ke-2 (Ayat)
 
             // 4. KUTIPAN AYAT SUCI
             ayatTeks: `"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."`,
@@ -365,13 +395,13 @@
 
             // 10. DAFTAR NO REKENING & HADIAH (Bisa Tambah / Hapus Bank Sesuai Kebutuhan)
             daftarRekening: [
-                { bank: "Dana", nomor: "083172367187", atasNama: "Shofa Bunyani MArsus" },
-                { bank: "Bank BSI", nomor: "7309950059", atasNama: "Fuad Abdurrohman Salam" },
+                { bank: "Dana", nomor: "083172367187", atasNama: "Shofa Bunyani Marsus" },
+                { bank: "Bank BSI", nomor: "7309950059", atasNama: "Fuad Abdurrohman Salam" }
             ]
         };
 
         // =========================================================================
-        // 🚀 AUTOMATIC SYSTEM RENDER (JANGAN DIUBAH KECUALI MENGERTI JAVASCRIPT)
+        // 🚀 AUTOMATIC SYSTEM RENDER
         // =========================================================================
         document.addEventListener('DOMContentLoaded', () => {
             // Load Param Tamu ?to=NamaTamu
@@ -388,6 +418,9 @@
             document.getElementById('view-tgl-singkat').innerText = CONFIG.tglSingkat;
             document.getElementById('cover').style.backgroundImage = `linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.85)), url('${CONFIG.fotoCover}')`;
             document.getElementById('bg-music').src = CONFIG.linkMusik;
+
+            // Render Background Slide 2 (Ayat)
+            document.getElementById('quote').style.backgroundImage = `linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('${CONFIG.fotoBgSlide2}')`;
 
             // Render Ayat
             document.getElementById('view-ayat-teks').innerText = CONFIG.ayatTeks;
@@ -454,6 +487,20 @@
                 }
             }, 1000);
         });
+
+        // FUNGSI TOGGLE AMPLOP DIGITAL (BUKA / TUTUP)
+        function toggleGift() {
+            const giftBox = document.getElementById('gift-box');
+            const btn = document.getElementById('btn-toggle-gift');
+            
+            if (giftBox.classList.contains('active')) {
+                giftBox.classList.remove('active');
+                btn.innerHTML = `<i class="fas fa-gift"></i> Klik Untuk Buka Amplop Digital`;
+            } else {
+                giftBox.classList.add('active');
+                btn.innerHTML = `<i class="fas fa-chevron-up"></i> Tutup Amplop Digital`;
+            }
+        }
 
         // MUSIK CONTROL
         const audio = document.getElementById('bg-music');
